@@ -9,6 +9,11 @@ allprojects {
   apply from: "${rootDir}/gradle/ide.gradle"
 }
 
+buildScan {
+  termsOfServiceUrl = "https://gradle.com/terms-of-service"
+  termsOfServiceAgree = "yes"
+}
+
 dependencies {
 
   // The compileOnly scope ensures that once deployed, the dependency
