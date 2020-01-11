@@ -2,9 +2,11 @@
  * Common settings for all Java modules.
  */
 apply plugin: 'java'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
 group = 'com.rednavis.showcase.vaadin'
 version = '0.0.1-SNAPSHOT'
 
@@ -25,8 +27,8 @@ configurations {
 dependencies {
 
   // Lombok
-  implementation 'org.projectlombok:lombok'
-  annotationProcessor 'org.projectlombok:lombok'
+  implementation 'org.projectlombok:lombok:1.18.10'
+  annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'

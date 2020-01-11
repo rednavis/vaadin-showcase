@@ -1,22 +1,25 @@
 allprojects {
   repositories {
-    mavenLocal()
     mavenCentral()
     jcenter()
-  }
 
+    // TODO Remove that workaround when appropriate fix would be provided in latest Gradle 6.X version
+    // https://github.com/srs/gradle-node-plugin/issues/301
+    whenObjectAdded {
+      if (it instanceof IvyArtifactRepository) {
+        metadataSources {
+          artifact()
+        }
+      }
+    }
+  }
+}
+
+subprojects {
   apply from: "${rootDir}/gradle/java.gradle"
-  apply from: "${rootDir}/gradle/ide.gradle"
 }
 
 buildScan {
   termsOfServiceUrl = "https://gradle.com/terms-of-service"
   termsOfServiceAgree = "yes"
-}
-
-dependencies {
-
-  // The compileOnly scope ensures that once deployed, the dependency
-  // will be provided by the container where it has been deployed
-  compileOnly 'javax:javaee-api:6.0'
 }

@@ -1,0 +1,19 @@
+plugins {
+    id 'com.devsoap.vaadin-flow' version '1.2'
+    id 'org.gretty' version '3.0.1'
+}
+
+vaadin {
+    submitStatistics false
+    version '14.0.3'
+}
+
+vaadin.autoconfigure()
+
+dependencies {
+
+    implementation 'com.vaadin:vaadin:14.0.3'
+    implementation 'com.vaadin:vaadin-spring-boot-starter:14.0.3'
+
+    implementation 'org.springframework.boot:spring-boot-devtools:2.1.7.RELEASE'
+}
