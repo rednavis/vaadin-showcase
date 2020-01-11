@@ -1,0 +1,17 @@
+allprojects {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+  }
+
+  apply from: "${rootDir}/gradle/java.gradle"
+  apply from: "${rootDir}/gradle/ide.gradle"
+}
+
+dependencies {
+
+  // The compileOnly scope ensures that once deployed, the dependency
+  // will be provided by the container where it has been deployed
+  compileOnly 'javax:javaee-api:6.0'
+}
