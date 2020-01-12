@@ -19,5 +19,8 @@
   "vaadinAppPackageHash": "9426348e394f5d04616d1756ab143bd939076cf4f3f89978190330df61ef09ec",
   "engines": {
     "node": "13.6.0"
+  },
+  "vaadin": {
+    "disableUsageStatistics": true
   }
 }
