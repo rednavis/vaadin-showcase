@@ -16,6 +16,10 @@
     "raw-loader": "3.0.0"
   },
   "engines": {
-    "node": "13.6.0"
+    "node": "13.6.0",
+    "npm": "6.13.4"
+  },
+  "vaadin": {
+    "disableUsageStatistics": true
   }
 }
