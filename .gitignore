@@ -92,3 +92,4 @@ atlassian-ide-plugin.xml
 
 # Application-specific
 # TBD
+webpack.generated.js
