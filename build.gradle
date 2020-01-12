@@ -1,3 +1,12 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+  }
+}
+
 allprojects {
   repositories {
     mavenCentral()
@@ -17,9 +26,12 @@ allprojects {
 
 subprojects {
   apply from: "${rootDir}/gradle/java.gradle"
+  task stage() {
+  }
 }
 
 buildScan {
   termsOfServiceUrl = "https://gradle.com/terms-of-service"
   termsOfServiceAgree = "yes"
 }
+
