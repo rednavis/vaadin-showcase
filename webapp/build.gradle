@@ -12,23 +12,6 @@ vaadin {
 
 vaadin.autoconfigure()
 
-task generatePom {
-    doLast {
-        pom {
-            project {
-                inceptionYear '2020'
-                licenses {
-                    license {
-                        name 'GPL 3.0'
-                        url 'https://www.gnu.org/licenses/gpl-3.0.en.html'
-                        distribution 'repo'
-                    }
-                }
-            }
-        }.writeTo("$projectDir/pom.xml")
-    }
-}
-
 task copyToLib(type: Copy) {
     into "$buildDir/server"
     from(configurations.compile) {
