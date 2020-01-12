@@ -2,6 +2,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21e248caf9cf4192ae618eada63469c6)](https://www.codacy.com/gh/rednavis/vaadin-showcase?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rednavis/vaadin-showcase&amp;utm_campaign=Badge_Grade)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+
 # Showcase of Vaadin features
 
 This application will demonstrate example of proper architecture of Vaadin application based on the following patterns and best practices:
