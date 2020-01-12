@@ -23,3 +23,9 @@ For Intellij IDEA, navigate to Preferences | Build, Execution, Deployment | Comp
 
 # How to launch locally
 Type `gradle jettyRun` from project root or `webapp` module and then navigate to `http://localhost:8080/webapp`.
+
+# Continuous Integration
+https://travis-ci.com/rednavis/vaadin-showcase
+
+# Quality assurance
+https://app.codacy.com/gh/rednavis/vaadin-showcase/dashboard
