@@ -189,40 +189,40 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals><goal>copy</goal></goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.heroku</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>${webapp-runner.version}</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-dependency-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals><goal>copy</goal></goals>-->
+<!--                        <configuration>-->
+<!--                            <artifactItems>-->
+<!--                                <artifactItem>-->
+<!--                                    <groupId>com.heroku</groupId>-->
+<!--                                    <artifactId>webapp-runner</artifactId>-->
+<!--                                    <version>${webapp-runner.version}</version>-->
+<!--                                    <destFileName>webapp-runner.jar</destFileName>-->
+<!--                                </artifactItem>-->
+<!--                            </artifactItems>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.15</version>
-                <configuration>
-                    <appName>vaadin-showcase</appName>
-                    <jdkVersion>1.8</jdkVersion>
-                    <processTypes>
-                        <!-- web: java -Dserver.port=$PORT $JAVA_OPTS -jar webapp/build/server/webapp-runner-*.jar webapp/build/libs/*.war -->
-                        <web>java -jar target/dependency/webapp-runner.jar target/*.war</web>
-                    </processTypes>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.heroku.sdk</groupId>-->
+<!--                <artifactId>heroku-maven-plugin</artifactId>-->
+<!--                <version>2.0.15</version>-->
+<!--                <configuration>-->
+<!--                    <appName>vaadin-showcase</appName>-->
+<!--                    <jdkVersion>1.8</jdkVersion>-->
+<!--                    <processTypes>-->
+<!--                        &lt;!&ndash; web: java -Dserver.port=$PORT $JAVA_OPTS -jar webapp/build/server/webapp-runner-*.jar webapp/build/libs/*.war &ndash;&gt;-->
+<!--                        <web>java -jar target/dependency/webapp-runner.jar target/*.war</web>-->
+<!--                    </processTypes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <!-- Test coverage settings -->
             <plugin>
