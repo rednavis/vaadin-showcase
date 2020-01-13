@@ -1,6 +1,5 @@
 package com.rednavis.vaadin.showcase.views.dashboard;
 
-import javax.inject.Inject;
 import com.rednavis.vaadin.showcase.MainView;
 import com.rednavis.vaadin.showcase.backend.BackendService;
 import com.rednavis.vaadin.showcase.backend.Employee;
@@ -22,10 +21,9 @@ import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
+import javax.inject.Inject;
 
 @Route(value = "dashboard", layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Dashboard")
 @CssImport("styles/views/dashboard/dashboard-view.css")
 public class DashboardView extends Div implements AfterNavigationObserver {
