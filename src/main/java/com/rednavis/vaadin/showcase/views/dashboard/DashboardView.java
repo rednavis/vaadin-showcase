@@ -45,6 +45,9 @@ public class DashboardView extends Div implements AfterNavigationObserver {
 
   private Binder<Employee> binder;
 
+  /**
+   * DashboardView.
+   */
   public DashboardView() {
     setId("dashboard-view");
     // Configure Grid
