@@ -240,6 +240,7 @@
                 </configuration>
             </plugin>
 
+
             <!-- Test coverage settings -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
