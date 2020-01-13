@@ -8,22 +8,22 @@
 This application will demonstrate example of proper architecture of Vaadin application based on the following patterns and best practices:
 - separation of concerns (server and client side of the application should be explicitly decoupled)
 - DRY
-- standard Java EE features like JSR-330 (Dependency Injection) 
+- standard Java EE features like JSR-330 (Dependency Injection)
 - ...
 
 # Prerequisites
 - Intellij IDEA 2019.3 (other IDE should be OK but where not tested)
 - Oracle JDK 1.8.X
-- Gradle 6.0.1
+- Maven 3.6.3
 
 # Setting up IDE
 For Intellij IDEA, navigate to Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and turn on `Enable Annotation Processing`.
 
 # How to build 
-`gradle build`
+`mvn install`
 
 # How to launch locally
-Type `gradle jettyRun` from project root or `webapp` module and then navigate to `http://localhost:8080/webapp`.
+Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
 
 # Continuous Integration
 https://travis-ci.com/rednavis/vaadin-showcase
