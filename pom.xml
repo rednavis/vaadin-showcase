@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>vaadin-showcase</artifactId>
   <build>
     <defaultGoal>package tomee:run</defaultGoal>
     <plugins>
@@ -115,6 +114,32 @@
         <groupId>org.codehaus.mojo</groupId>
         <version>2.7</version>
       </plugin>
+
+      <!-- Code style -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle.plugin.version}</version>
+        <configuration>
+          <configLocation>${project.basedir}/config/checkstyle/checkstyle.xml</configLocation>
+          <suppressionsLocation>${project.basedir}/config/checkstyle/suppressions.xml</suppressionsLocation>
+          <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+          <encoding>UTF-8</encoding>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>true</failsOnError>
+          <linkXRef>false</linkXRef>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
   <dependencies>
@@ -172,13 +197,6 @@
       <version>${webapp-runner.version}</version>
     </dependency>
 
-    <dependency>
-      <artifactId>lombok</artifactId>
-      <groupId>org.projectlombok</groupId>
-      <scope>provided</scope>
-      <version>1.18.10</version>
-    </dependency>
-
     <!-- Added to provide logging output as Flow uses -->
     <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
     <dependency>
@@ -192,6 +210,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <artifactId>vaadin-showcase</artifactId>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -219,6 +238,44 @@
       <url>https://repo1.maven.org/maven2/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <properties>
+    <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
+    <drivers.dir>${project.basedir}/drivers</drivers.dir>
+    <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <maven.compiler.source>1.8</maven.compiler.source>
+
+    <!-- Dependencies -->
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <vaadin.version>14.1.3</vaadin.version>
+
+    <!-- Plugins -->
+    <webapp-runner.version>9.0.30.0</webapp-runner.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <!-- Repository used by many Vaadin add-ons -->
+    <repository>
+      <id>Vaadin Directory</id>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://maven.vaadin.com/vaadin-addons</url>
+    </repository>
+  </repositories>
+
+  <version>1.0-SNAPSHOT</version>
 
   <profiles>
     <profile>
@@ -339,38 +396,25 @@
     </profile>
   </profiles>
 
-  <properties>
-    <drivers.dir>${project.basedir}/drivers</drivers.dir>
-    <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-
-    <!-- Dependencies -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <vaadin.version>14.1.3</vaadin.version>
-    <webapp-runner.version>9.0.30.0</webapp-runner.version>
-  </properties>
-
-  <repositories>
-    <repository>
-      <id>central</id>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <url>https://repo1.maven.org/maven2/</url>
-    </repository>
-    <!-- Repository used by many Vaadin add-ons -->
-    <repository>
-      <id>Vaadin Directory</id>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <url>https://maven.vaadin.com/vaadin-addons</url>
-    </repository>
-  </repositories>
-
-  <version>1.0-SNAPSHOT</version>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle.plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+        <configuration>
+          <configLocation>${project.basedir}/config/checkstyle/checkstyle.xml</configLocation>
+          <suppressionsLocation>${project.basedir}/config/checkstyle/suppressions.xml</suppressionsLocation>
+          <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
