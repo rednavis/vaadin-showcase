@@ -31,14 +31,17 @@ import com.vaadin.flow.theme.lumo.Lumo;
 @Viewport(VIEW_PORT)
 public class LoginView extends PolymerTemplate<TemplateModel> {
 
-    @Id("content")
-    private Div content;
+  @Id("content")
+  private Div content;
 
-    public LoginView() {
-        Button goDashboard = new Button("Go Dashboard");
-        goDashboard.addClickListener(
-                (ComponentEventListener<ClickEvent<Button>>) buttonClickEvent -> UI.getCurrent().navigate(DashboardView.class));
+  /**
+   * LoginView.
+   */
+  public LoginView() {
+    Button goDashboard = new Button("Go Dashboard");
+    goDashboard.addClickListener(
+        (ComponentEventListener<ClickEvent<Button>>) buttonClickEvent -> UI.getCurrent().navigate(DashboardView.class));
 
-        content.add(goDashboard);
-    }
+    content.add(goDashboard);
+  }
 }
