@@ -10,7 +10,7 @@ public class BackendService {
     private List<Employee> employees;
 
     {
-    // Init dummy data
+        // Init dummy data
 
         employees = new ArrayList<>();
         employees.add(new Employee("Rowena", "Leeming", "rleeming0@bbc.co.uk", "Food Chemist"));
