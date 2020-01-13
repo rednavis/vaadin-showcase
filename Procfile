@@ -1,0 +1,1 @@
+web: docker build -t vaadin-show-case . && docker run --rm --name vaadin-showcase -it -p 8080:8080 vaadin-showcase
