@@ -1,4 +1,4 @@
-package com.rednavis.vaadin.showcase;
+package com.rednavis.vaadin.showcase.views;
 
 import java.util.ArrayList;
 import java.util.List;

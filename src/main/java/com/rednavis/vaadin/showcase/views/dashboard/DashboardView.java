@@ -1,7 +1,7 @@
 package com.rednavis.vaadin.showcase.views.dashboard;
 
 import javax.inject.Inject;
-import com.rednavis.vaadin.showcase.MainView;
+import com.rednavis.vaadin.showcase.views.MainView;
 import com.rednavis.vaadin.showcase.backend.BackendService;
 import com.rednavis.vaadin.showcase.backend.Employee;
 import com.vaadin.flow.component.AbstractField;
