@@ -2,67 +2,70 @@ package com.rednavis.vaadin.showcase.backend;
 
 public class Employee {
 
-    private String firstname;
-    private String lastname;
-    private String title;
-    private String email;
-    private String notes = "";
+  private String firstname;
+  private String lastname;
+  private String title;
+  private String email;
+  private String notes = "";
 
-    public Employee(String firstname, String lastname, String email,
-            String title) {
-        super();
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.title = title;
-    }
+  /**
+   * Employee.
+   *
+   * @param firstname firstname
+   * @param lastname  lastname
+   * @param email     email
+   * @param title     title
+   */
+  public Employee(String firstname, String lastname, String email, String title) {
+    super();
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.email = email;
+    this.title = title;
+  }
 
-    public Employee() {
+  public String getFirstname() {
+    return firstname;
+  }
 
-    }
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
 
-    public String getFirstname() {
-        return firstname;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-    public String getLastname() {
-        return lastname;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  @Override
+  public String toString() {
+    return firstname + " " + lastname + "(" + email + ")";
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getNotes() {
+    return notes;
+  }
 
-    @Override
-    public String toString() {
-        return firstname + " " + lastname + "(" + email + ")";
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
 }
