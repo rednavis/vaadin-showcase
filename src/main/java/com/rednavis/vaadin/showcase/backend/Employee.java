@@ -10,15 +10,10 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String email,
             String title) {
-        super();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.title = title;
-    }
-
-    public Employee() {
-
     }
 
     public String getFirstname() {

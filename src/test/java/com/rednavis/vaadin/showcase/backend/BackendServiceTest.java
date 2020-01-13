@@ -1,6 +1,6 @@
 package com.rednavis.vaadin.showcase.backend;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class BackendServiceTest {
   }
 
   @Test
-  public void should_test_get_employees() {
+  public void shouldTestGetEmployees() {
     assertFalse(service.getEmployees().isEmpty());
   }
 }
