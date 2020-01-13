@@ -22,7 +22,7 @@ public class Employee {
     this.email = email;
     this.title = title;
   }
-  
+
   public String getFirstname() {
     return firstname;
   }

@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class BackendServiceTest {
-  
+
   @InjectMocks
   private BackendService service;
 
