@@ -1,1 +1,1 @@
-web: java -Dthorntail.bind.address=localhost -Dthorntail.http.port=80 -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar
+web: java -Dthorntail.http.port=$PORT -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar
