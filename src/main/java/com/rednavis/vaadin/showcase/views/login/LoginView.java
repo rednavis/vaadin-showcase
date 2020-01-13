@@ -21,13 +21,7 @@ import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
-import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author Aliaksei Labotski.
- * @since 13/01/20.
- */
-@Slf4j
 @Theme(Lumo.class)
 @PageTitle(PAGE_LOGIN_TITLE)
 @Route(PAGE_LOGIN_URL)
