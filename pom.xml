@@ -225,19 +225,20 @@
 <!--                </executions>-->
 <!--            </plugin>-->
 
-<!--            <plugin>-->
-<!--                <groupId>com.heroku.sdk</groupId>-->
-<!--                <artifactId>heroku-maven-plugin</artifactId>-->
-<!--                <version>2.0.15</version>-->
-<!--                <configuration>-->
-<!--                    <appName>vaadin-showcase</appName>-->
-<!--                    <jdkVersion>1.8</jdkVersion>-->
-<!--                    <processTypes>-->
-<!--                        &lt;!&ndash; web: java -Dserver.port=$PORT $JAVA_OPTS -jar webapp/build/server/webapp-runner-*.jar webapp/build/libs/*.war &ndash;&gt;-->
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.15</version>
+                <configuration>
+                    <appName>vaadin-showcase</appName>
+                    <jdkVersion>1.8</jdkVersion>
+                    <processTypes>
+                        <!-- web: java -Dserver.port=$PORT $JAVA_OPTS -jar webapp/build/server/webapp-runner-*.jar webapp/build/libs/*.war -->
 <!--                        <web>java -jar target/dependency/webapp-runner.jar target/*.war</web>-->
-<!--                    </processTypes>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+                        <web>java -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
 
             <!-- Test coverage settings -->
             <plugin>
@@ -263,6 +264,9 @@
         <profile>
             <!-- Production mode is activated using -Pproduction -->
             <id>production</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <vaadin.productionMode>true</vaadin.productionMode>
             </properties>
