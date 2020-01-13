@@ -1,8 +1,8 @@
 package com.rednavis.vaadin.showcase.views.login;
 
-import static com.rednavis.vaadin.showcase.views.Constants.PAGE_LOGIN_TITLE;
-import static com.rednavis.vaadin.showcase.views.Constants.PAGE_LOGIN_URL;
-import static com.rednavis.vaadin.showcase.views.Constants.VIEW_PORT;
+import static com.rednavis.vaadin.showcase.views.ConstantUtils.PAGE_LOGIN_TITLE;
+import static com.rednavis.vaadin.showcase.views.ConstantUtils.PAGE_LOGIN_URL;
+import static com.rednavis.vaadin.showcase.views.ConstantUtils.VIEW_PORT;
 
 import com.rednavis.vaadin.showcase.views.dashboard.DashboardView;
 import com.vaadin.flow.component.ClickEvent;

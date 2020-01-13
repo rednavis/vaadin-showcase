@@ -1,5 +1,5 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {PolymerElement} from "@polymer/polymer/polymer-element.js";
+import {html} from "@polymer/polymer/lib/utils/html-tag.js";
 
 class LoginView extends PolymerElement {
   static get template() {
@@ -11,7 +11,7 @@ class LoginView extends PolymerElement {
   }
 
   static get is() {
-    return 'login-view';
+    return "login-view";
   }
 }
 
