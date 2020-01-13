@@ -2,20 +2,16 @@ package com.rednavis.vaadin.showcase.backend;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@TestInstance(Lifecycle.PER_CLASS)
+@ExtendWith(MockitoExtension.class)
 public class BackendServiceTest {
   
+  @InjectMocks
   private BackendService service;
-  
-  @BeforeAll
-  public void init() {
-    service = new BackendService();
-  }
 
   @Test
   public void shouldTestGetEmployees() {
