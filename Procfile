@@ -1,1 +1,1 @@
-web: java -Dthorntail.http.port=$PORT JAVA_OPTS="$JAVA_OPTS -Xms256m -Xmx512m" -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar
+web: java -Xmx256m -XX:+UseContainerSupport -Dthorntail.http.port=$PORT -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar
