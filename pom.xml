@@ -60,78 +60,19 @@
         <version>${vaadin.version}</version>
       </plugin>
 
+
       <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
+        <version>2.6.0.Final</version>
         <executions>
           <execution>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <artifactId>webapp-runner</artifactId>
-                  <destFileName>webapp-runner.jar</destFileName>
-                  <groupId>com.heroku</groupId>
-                  <version>${webapp-runner.version}</version>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
             <goals>
-              <goal>copy</goal>
+              <goal>package</goal>
             </goals>
-            <phase>package</phase>
           </execution>
         </executions>
-        <groupId>org.apache.maven.plugins</groupId>
       </plugin>
-
-              <plugin>
-                  <groupId>io.thorntail</groupId>
-                  <artifactId>thorntail-maven-plugin</artifactId>
-                  <version>2.6.0.Final</version>
-                  <executions>
-                      <execution>
-                          <goals>
-                              <goal>package</goal>
-                          </goals>
-                      </execution>
-                  </executions>
-              </plugin>
-
-
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-dependency-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals><goal>copy</goal></goals>-->
-<!--                        <configuration>-->
-<!--                            <artifactItems>-->
-<!--                                <artifactItem>-->
-<!--                                    <groupId>com.heroku</groupId>-->
-<!--                                    <artifactId>webapp-runner</artifactId>-->
-<!--                                    <version>${webapp-runner.version}</version>-->
-<!--                                    <destFileName>webapp-runner.jar</destFileName>-->
-<!--                                </artifactItem>-->
-<!--                            </artifactItems>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-
-<!--            <plugin>-->
-<!--                <groupId>com.heroku.sdk</groupId>-->
-<!--                <artifactId>heroku-maven-plugin</artifactId>-->
-<!--                <version>2.0.15</version>-->
-<!--                <configuration>-->
-<!--                    <appName>vaadin-showcase</appName>-->
-<!--                    <jdkVersion>1.8</jdkVersion>-->
-<!--                    <processTypes>-->
-<!--                        &lt;!&ndash; web: java -Dserver.port=$PORT $JAVA_OPTS -jar webapp/build/server/webapp-runner-*.jar webapp/build/libs/*.war &ndash;&gt;-->
-<!--&lt;!&ndash;                        <web>java -jar target/dependency/webapp-runner.jar target/*.war</web>&ndash;&gt;-->
-<!--                    </processTypes>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-
 
       <!-- Test coverage settings -->
       <plugin>
@@ -150,7 +91,7 @@
               <exclude>com/rednavis/vaadin/showcase/views/**/*.class</exclude>
             </excludes>
           </instrumentation>
-          <check />
+          <check/>
         </configuration>
       </plugin>
 
@@ -204,17 +145,6 @@
       <groupId>javax</groupId>
       <scope>provided</scope>
       <version>7.0</version>
-    </dependency>
-    <!--<dependency>
-        <groupId>javax.enterprise</groupId>
-        <artifactId>cdi-api</artifactId>
-        <version>1.2</version>
-    </dependency> -->
-    <dependency>
-      <artifactId>webapp-runner</artifactId>
-      <groupId>com.heroku</groupId>
-      <scope>provided</scope>
-      <version>${webapp-runner.version}</version>
     </dependency>
 
     <!-- Added to provide logging output as Flow uses -->
@@ -296,8 +226,6 @@
     <junit-platform-runner.version>1.5.2</junit-platform-runner.version>
     <mockito-junit-jupiter.version>3.2.4</mockito-junit-jupiter.version>
 
-    <!-- Plugins -->
-    <webapp-runner.version>9.0.30.0</webapp-runner.version>
   </properties>
 
   <repositories>
