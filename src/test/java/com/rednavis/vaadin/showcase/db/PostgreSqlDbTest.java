@@ -11,9 +11,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PostgreSqlDbTest {
 
+  private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDbTest.class);
   private static final String TABLE_NAME = "test";
   private static final String COLUMN_ID = "id";
   private static final String COLUMN_NAME = "name";
@@ -32,6 +35,9 @@ public class PostgreSqlDbTest {
     dbRule.createTable(TABLE_NAME, columns);
   }
 
+  /**
+   * Destroying after test.
+   */
   @After
   public void destroy() throws SQLException {
     dbRule.dropTable(TABLE_NAME);
@@ -47,7 +53,8 @@ public class PostgreSqlDbTest {
       assertEquals(1, selectResultSet.getInt(COLUMN_ID));
       assertEquals("name", selectResultSet.getString(COLUMN_NAME));
     } else {
-      throw new IllegalArgumentException("Wrong select query result");
+      LOG.info("Not empty select query result set is expected");
+      throw new IllegalArgumentException("Not empty select query result set is expected");
     }
   }
 }

@@ -26,6 +26,13 @@ For Intellij IDEA, navigate to Preferences | Build, Execution, Deployment | Comp
 # How to launch locally
 Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
 
+# Unit testing 
+We need to keep coverage of all logic by Unit tests between above 80%.
+We don't need to add Unit tests for Vaadin UI classes, such as Views and others.
+
+# Integration testing 
+By example of `PostgreSqlDbTest.class`, you can see how we can use `testcontainers` for integration testing.
+
 # Continuous Integration
 https://travis-ci.com/rednavis/vaadin-showcase
 
