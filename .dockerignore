@@ -15,3 +15,4 @@ LICENSE
 .vscode
 .travis.yml
 codecov.yml
+settings.xml
