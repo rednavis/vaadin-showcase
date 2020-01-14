@@ -1,6 +1,6 @@
 import {PolymerElement} from "@polymer/polymer/polymer-element.js";
-import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
-import '@polymer/iron-icon/iron-icon.js';
+import "@polymer/iron-iconset-svg/iron-iconset-svg.js";
+import "@polymer/iron-icon/iron-icon.js";
 import {html} from "@polymer/polymer/lib/utils/html-tag.js";
 
 class LoginView extends PolymerElement {
