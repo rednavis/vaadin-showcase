@@ -13,4 +13,10 @@ public class ConstantUtils {
 
   public static final String PAGE_LOGIN_TITLE = "Login";
   public static final String PAGE_LOGIN_URL = "loginView";
+  public static final String LOGIN_FORM_LOGIN = "Username";
+  public static final String BUTTON_LOGIN = "LOG IN";
+  public static final String LOGIN_FORM_PASSWORD = "Password";
+  public static final String LOGIN_FORM_TYPE_A_LOGIN = "Type your username";
+  public static final String LOGIN_FORM_TYPE_A_PASSWORD = "Type your password";
+  public static final String LOGIN_FORM_REMEMBER_ME = "Remember me";
 }
