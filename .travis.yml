@@ -10,10 +10,3 @@ after_success:
 cache:
   directories:
     - $HOME/.m2
-deploy:
-  provider: heroku
-  api_key:
-    secure: DcLrLzIWAcZYY6QJnKk7kDY7uOeCdCDnO3P/Ejqkc2p8SlKCm5d9tfXDpZWmvyQjDBGF1UB917Not0um24BKNxiiuH+7QA06UjoRzRj8g0zHMNuG7d9vEmqhVMmLr85yzyIUrglyasHqcLn2fz2AAxcfZlUpYxu9UqYskTbR13HnsDzWO5yfYKxxL/A32u/jpD9T9e7eip+1i1WMtHMyQuhbBilCQKTA4mj6ANWMMrLdGH8kKXeDO9qH2nTEkq+1uaImvze8yaTHbmKuHpjdif9/J4RVhZHds81pMDKnQox0eS7lQMAgHCqhPQgxB88eF3cw2G8QKHkE0mISEKNf4/n3UxsYwqhedpOjSkUCJbHzfbFM8JofKe5tRYP4Z7cg3o4iEY/YYgEy/zznEyB/eTKtrQrdYBGdD/VJQtTrDFUtI2wjJoFSa2I5xNUzADIR0/i+CZ19B4pX87f6y181UsgCm9gmJHwwD5C/IYGXIhcL49nveU/ScUCVIFbL6zB/925t57BKeFb1nsKcgI1M85GoxX9wwwOMxBEFtiLRuSo8PCmbbYa2EbxBkTAFB4eSJso7sDfEUghn7bghIgNmE9QsQFb78+i57Yd1+FNR8chCzoliwOG003E9H9bu+cp+X8qEykXa5Q9Bd5/BuMB4CdG0VxaYo7z2+TmkldcRVbY=
-  app: vaadin-showcase
-  on:
-    repo: rednavis/vaadin-showcase
