@@ -1,4 +1,4 @@
-package com.rednavis.vaadin.showcase;
+package com.rednavis.vaadin.showcase.views;
 
 import com.rednavis.vaadin.showcase.views.dashboard.DashboardView;
 import com.vaadin.flow.component.Component;

@@ -1,8 +1,8 @@
 package com.rednavis.vaadin.showcase.views.dashboard;
 
-import com.rednavis.vaadin.showcase.MainView;
 import com.rednavis.vaadin.showcase.backend.BackendService;
 import com.rednavis.vaadin.showcase.backend.Employee;
+import com.rednavis.vaadin.showcase.views.MainView;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;

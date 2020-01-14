@@ -17,7 +17,6 @@ public class Employee {
    * @param title     title
    */
   public Employee(String firstname, String lastname, String email, String title) {
-    super();
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
