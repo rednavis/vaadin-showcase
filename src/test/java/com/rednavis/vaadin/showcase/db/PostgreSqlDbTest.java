@@ -7,16 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class PostgreSqlDbTest {
-
-  private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDbTest.class);
+  
   private static final String TABLE_NAME = "test";
   private static final String COLUMN_ID = "id";
   private static final String COLUMN_NAME = "name";
@@ -53,7 +52,7 @@ public class PostgreSqlDbTest {
       assertEquals(1, selectResultSet.getInt(COLUMN_ID));
       assertEquals("name", selectResultSet.getString(COLUMN_NAME));
     } else {
-      LOG.info("Not empty select query result set is expected");
+      log.info("Not empty select query result set is expected");
       throw new IllegalArgumentException("Not empty select query result set is expected");
     }
   }

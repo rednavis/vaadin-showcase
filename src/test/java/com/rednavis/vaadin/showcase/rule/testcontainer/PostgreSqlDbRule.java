@@ -7,15 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.rules.ExternalResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
 
+@Slf4j
 public class PostgreSqlDbRule extends ExternalResource {
-
-  private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDbRule.class);
+  
   private static final int EXPOSED_PORT = 5432;
   private static final String TEST_DATABASE_NAME = "testDb";
   private static final String TEST_ROOT_USER_NAME = "rootUser";
@@ -51,16 +50,16 @@ public class PostgreSqlDbRule extends ExternalResource {
 
   @Override
   public void before() {
-    LOG.info("Starting the PostgreSql server");
+    log.info("Starting the PostgreSql server");
     db.start();
-    LOG.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
+    log.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
   }
 
   @Override
   public void after() {
-    LOG.info("Stopping PostgreSql server");
+    log.info("Stopping PostgreSql server");
     db.stop();
-    LOG.info("PostgreSql server stopped");
+    log.info("PostgreSql server stopped");
   }
 
   public String getHost() {

@@ -1,5 +1,10 @@
 package com.rednavis.vaadin.showcase.backend;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Employee {
 
   private String firstname;
@@ -23,48 +28,8 @@ public class Employee {
     this.title = title;
   }
 
-  public String getFirstname() {
-    return firstname;
-  }
-
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
-
-  public String getLastname() {
-    return lastname;
-  }
-
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
   @Override
   public String toString() {
     return firstname + " " + lastname + "(" + email + ")";
-  }
-
-  public String getNotes() {
-    return notes;
-  }
-
-  public void setNotes(String notes) {
-    this.notes = notes;
   }
 }
