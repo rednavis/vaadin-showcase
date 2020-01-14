@@ -8,6 +8,6 @@ RUN mvn -e -B package -DskipTests -Pproduction
 
 FROM tomee:8-jre-8.0.0-M1-plume
 WORKDIR /usr/local/tomee/webapps
-RUN rm -Rf *
+RUN rm -Rf -- *
 COPY --from=build /usr/local/app/target/*.war app.war
 CMD ["catalina.sh","run"]
