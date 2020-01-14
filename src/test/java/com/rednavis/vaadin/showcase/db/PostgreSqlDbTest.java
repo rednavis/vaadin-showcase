@@ -38,13 +38,16 @@ public class PostgreSqlDbTest {
   }
 
   @Test
-  public void test_successfully_write_in_db() throws SQLException {
+  public void testWriteInDb() throws SQLException {
     int result = dbRule.executeQuery(String.format("insert into %s (%s, %s) values (1, 'name')", TABLE_NAME, COLUMN_ID, COLUMN_NAME));
     assertEquals(1, result);
     
     ResultSet selectResultSet = dbRule.selectQuery("select * from " + TABLE_NAME);
-    selectResultSet.next();
-    assertEquals(1, selectResultSet.getInt(COLUMN_ID));
-    assertEquals("name", selectResultSet.getString(COLUMN_NAME));
+    if (selectResultSet.next()) {
+      assertEquals(1, selectResultSet.getInt(COLUMN_ID));
+      assertEquals("name", selectResultSet.getString(COLUMN_NAME));
+    } else {
+      throw new IllegalArgumentException("Wrong select query result");
+    }
   }
 }
