@@ -1,5 +1,8 @@
 package com.rednavis.vaadin.showcase.backend;
 
+/**
+ *  Model.
+ */
 public class Employee {
 
   private String firstname;

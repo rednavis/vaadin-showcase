@@ -1,0 +1,1 @@
+web: java -Dthorntail.http.port=$PORT -jar target/vaadin-showcase-1.0-SNAPSHOT-thorntail.jar
