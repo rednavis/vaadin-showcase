@@ -39,4 +39,5 @@ By example of `PostgreSqlDbTest.class`, you can see how we can use `testcontaine
 https://travis-ci.com/rednavis/vaadin-showcase
 
 # Quality assurance
-https://app.codacy.com/gh/rednavis/vaadin-showcase/dashboard
+[Codacy](https://app.codacy.com/gh/rednavis/vaadin-showcase/dashboard)
+[DeepCode](https://www.deepcode.ai/app/gh/rednavis/vaadin-showcase/e3030bc66806e770256e0435586ec621733d39c0/_/dashboard/)
