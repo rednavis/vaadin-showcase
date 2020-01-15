@@ -1,5 +1,6 @@
 package com.rednavis.vaadin.showcase.rule.testcontainer;
 
+import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.junit.rules.ExternalResource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
@@ -16,9 +19,10 @@ import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
 public class PostgreSqlDbRule extends ExternalResource {
   
   private static final int EXPOSED_PORT = 5432;
-  private static final String TEST_DATABASE_NAME = "testDb";
-  private static final String TEST_ROOT_USER_NAME = "rootUser";
-  private static final String TEST_ROOT_PASSWORD = "rootPass";
+  private static final String TEST_DATABASE_NAME = "test";
+  private static final String TEST_ROOT_USER_NAME = "root";
+  private static final String TEST_ROOT_PASSWORD = "root";
+  private static final String scriptLocation = "classpath:db/migration";
 
   private final GenericContainer<?> db;
   private final String databaseName;
@@ -53,6 +57,17 @@ public class PostgreSqlDbRule extends ExternalResource {
     log.info("Starting the PostgreSql server");
     db.start();
     log.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
+
+    log.info("Reconfiguring Jdbi");
+    Dbi.instance().reconfigureJdbi(getUrl(), rootUserName, rootPassword);
+    
+    log.info("Starting migration");
+    FluentConfiguration fluentConfiguration = Flyway.configure()
+        .locations(scriptLocation)
+        .dataSource(getUrl(), rootUserName, rootPassword);
+    Flyway flyway = new Flyway(fluentConfiguration);
+    flyway.clean();
+    flyway.migrate();
   }
 
   @Override
