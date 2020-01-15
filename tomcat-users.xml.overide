@@ -44,6 +44,11 @@
   <!-- Activate those lines to get access to TomEE GUI if added (tomee-webaccess) -->
 
   <role rolename="tomee-admin" />
-  <user username="tomee" password="tomee" roles="tomee-admin,manager-gui" />
+  <role rolename="manager-gui" />
+  <role rolename="manager-script" />
+  <role rolename="manager-jmx" />
+  <role rolename="manager-status" />
+  <role rolename="admin-gui" />
+  <user username="tomee" password="tomee" roles="tomee-admin,manager-gui,manager-script,manager-jmx,manager-status,admin-gui" />
 
 </tomcat-users>
