@@ -18,13 +18,22 @@ This application will demonstrate example of proper architecture of Vaadin appli
 - Maven 3.6.3
 
 # Setting up IDE
-For Intellij IDEA, navigate to Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and turn on `Enable Annotation Processing`.
+For Intellij IDEA:
+- navigate to the Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and turn on `Enable Annotation Processing`
+- navigate to the Preferences | Plugins, open the Marketplace tab, install Lombok Plugin by Michail Plushnikov
 
 # How to build 
 `mvn install`
 
 # How to launch locally
 Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
+
+# Unit testing 
+We need to keep coverage of all logic by Unit tests between above 80%.
+We don't need to add Unit tests for Vaadin UI classes, such as Views and others.
+
+# Integration testing 
+By example of `PostgreSqlDbTest.class`, you can see how we can use `testcontainers` and `docker` for integration testing.
 
 # Continuous Integration
 https://travis-ci.com/rednavis/vaadin-showcase
