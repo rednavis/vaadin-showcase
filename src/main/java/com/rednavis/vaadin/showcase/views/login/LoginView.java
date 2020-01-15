@@ -22,7 +22,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-@Theme(Lumo.class)
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 @PageTitle(PAGE_LOGIN_TITLE)
 @Route(PAGE_LOGIN_URL)
 @RouteAlias(value = "")
