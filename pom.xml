@@ -112,6 +112,17 @@
         <version>2.22.1</version>
       </plugin>
 
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>6.1.3</version>
+        <configuration>
+          <url>jdbc:postgresql://localhost:5432/showcase?characterEncoding=UTF-8</url>
+          <user>root</user>
+          <password>root</password>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
   <dependencies>
