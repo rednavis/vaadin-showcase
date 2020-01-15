@@ -3,7 +3,7 @@ WORKDIR /usr/local/app
 COPY pom.xml .
 RUN mvn dependency:go-offline -Dsilent=true && mvn com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion="v12.13.0"
 COPY . .
-RUN mvn -e -B package -DskipTests -Pproduction
+RUN mvn -T 2C -e -B package -DskipTests -Pproduction
 
 FROM tomee:11-jre-8.0.0-M3-webprofile as tomee
 COPY server.xml.overide /usr/local/app/server.xml
