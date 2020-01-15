@@ -11,9 +11,6 @@ else
   sed -i "s/port=\"[0-9]\+\" protocol=\"HTTP\/1.1\"/port=\"$PORT\" protocol=\"HTTP\/1.1\"/" /usr/local/tomee/conf/server.xml
 fi
 
-echo "overide tomcat-user.xml"
-mv /usr/local/app/tomcat-users.xml /usr/local/tomee/conf/tomcat-users.xml
-
 echo "clean webapps folder"
 rm -Rf /usr/local/tomee/webapps/*
 
