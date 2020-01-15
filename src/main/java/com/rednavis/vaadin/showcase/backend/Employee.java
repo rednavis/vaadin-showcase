@@ -3,6 +3,9 @@ package com.rednavis.vaadin.showcase.backend;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ *  Model.
+ */
 @Getter
 @Setter
 public class Employee {
