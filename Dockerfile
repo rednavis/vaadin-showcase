@@ -7,6 +7,7 @@ RUN mvn -e -B package -DskipTests -Pproduction
 
 FROM tomee:11-jre-8.0.0-M3-webprofile as tomee
 RUN rm -Rf /usr/local/tomee/webapps/*
+COPY tomcat-users.xml.overide /usr/local/tomee/conf/tomcat-users.xml
 COPY server.xml.overide /usr/local/tomee/conf/server.xml
 COPY tomee_run.sh /usr/local/
 RUN chmod +x /usr/local/tomee_run.sh
