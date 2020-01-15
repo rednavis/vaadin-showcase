@@ -1,4 +1,8 @@
 #!/bin/bash
+
+echo "overide server.xml"
+mv /usr/local/app/server.xml /usr/local/tomee/conf/server.xml
+
 if [ -z "$PORT" ]
 then
   echo "Tomcat HTTP port not changed"
@@ -7,6 +11,16 @@ else
   sed -i "s/port=\"[0-9]\+\" protocol=\"HTTP\/1.1\"/port=\"$PORT\" protocol=\"HTTP\/1.1\"/" /usr/local/tomee/conf/server.xml
 fi
 
-echo "/usr/local/tomee/bin/catalina.sh run"
+echo "overide tomcat-user.xml"
+mv /usr/local/app/tomcat-users.xml /usr/local/tomee/conf/tomcat-users.xml
+
+echo "clean webapps folder"
+rm -Rf /usr/local/tomee/webapps/*
+
+echo "move app.war to webapps"
+mv /usr/local/app/app.war /usr/local/tomee/webapps/app.war
+
 cd /usr/local/tomee/bin
+
+echo "catalina.sh run"
 sh ./catalina.sh run

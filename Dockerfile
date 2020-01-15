@@ -6,12 +6,11 @@ COPY . .
 RUN mvn -e -B package -DskipTests -Pproduction
 
 FROM tomee:11-jre-8.0.0-M3-webprofile as tomee
-RUN rm -Rf /usr/local/tomee/webapps/*
-COPY tomcat-users.xml.overide /usr/local/tomee/conf/tomcat-users.xml
-COPY server.xml.overide /usr/local/tomee/conf/server.xml
+COPY tomcat-users.xml.overide /usr/local/app/tomcat-users.xml
+COPY server.xml.overide /usr/local/app/server.xml
 COPY tomee_run.sh /usr/local/
 RUN chmod +x /usr/local/tomee_run.sh
-COPY --from=build /usr/local/app/target/*.war /usr/local/tomee/webapps/app.war
+COPY --from=build /usr/local/app/target/*.war /usr/local/app/app.war
 ENV JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1024m -XX:+UseContainerSupport"
 CMD /usr/local/tomee_run.sh
 
