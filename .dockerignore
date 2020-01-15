@@ -1,5 +1,4 @@
 .idea
-Procfile
 build
 target
 node
@@ -16,3 +15,5 @@ LICENSE
 .travis.yml
 codecov.yml
 settings.xml
+Procfile*
+heroku.*
