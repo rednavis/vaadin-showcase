@@ -1,6 +1,6 @@
 package com.rednavis.vaadin.showcase.backend.db;
 
-public class DBConstants {
+public class DbConstants {
 
   // general constants
   public static final String ID = "id";

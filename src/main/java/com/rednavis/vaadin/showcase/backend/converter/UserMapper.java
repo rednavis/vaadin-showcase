@@ -4,7 +4,6 @@ import com.rednavis.vaadin.showcase.backend.dto.UserDto;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
 import java.util.List;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

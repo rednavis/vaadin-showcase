@@ -1,7 +1,7 @@
 package com.rednavis.vaadin.showcase.backend.service.user;
 
-import static com.rednavis.vaadin.showcase.backend.db.DBConstants.ID;
-import static com.rednavis.vaadin.showcase.backend.db.DBConstants.ROLE_PREFIX_ID;
+import static com.rednavis.vaadin.showcase.backend.db.DbConstants.ID;
+import static com.rednavis.vaadin.showcase.backend.db.DbConstants.ROLE_PREFIX_ID;
 
 import com.rednavis.vaadin.showcase.backend.entity.RoleEntity;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
