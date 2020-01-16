@@ -1,7 +1,6 @@
-package com.rednavis.vaadin.showcase.backend.dto;
+package com.rednavis.vaadin.showcase.backend.entity;
 
-import com.rednavis.vaadin.showcase.backend.enums.UserRole;
-import javax.validation.constraints.NotNull;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,16 +8,17 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldNameConstants;
 
 /**
- * RoleDto.
+ * UserEntity.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @FieldNameConstants
-public class RoleDto {
+public class UserEntity {
 
   private long id;
-  @NotNull
-  private UserRole role;
+  private String email;
+  private String password;
+  private Set<RoleEntity> roleSet;
 }
