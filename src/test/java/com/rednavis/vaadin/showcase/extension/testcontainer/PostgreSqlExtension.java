@@ -1,4 +1,4 @@
-package com.rednavis.vaadin.showcase.rule.testcontainer;
+package com.rednavis.vaadin.showcase.extension.testcontainer;
 
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import java.sql.Connection;
@@ -11,12 +11,16 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
-import org.junit.rules.ExternalResource;
+import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
 
 @Slf4j
-public class PostgreSqlDbRule extends ExternalResource {
+public class PostgreSqlExtension implements BeforeEachCallback, BeforeAllCallback, AfterEachCallback, AfterAllCallback {
   
   private static final int EXPOSED_PORT = 5432;
   private static final String TEST_DATABASE_NAME = "test";
@@ -24,12 +28,12 @@ public class PostgreSqlDbRule extends ExternalResource {
   private static final String TEST_ROOT_PASSWORD = "root";
   private static final String scriptLocation = "classpath:db/migration";
 
-  private final GenericContainer<?> db;
+  private final GenericContainer<?> dbContainer;
   private final String databaseName;
   private final String rootUserName;
   private final String rootPassword;
 
-  public PostgreSqlDbRule() {
+  public PostgreSqlExtension() {
     this(TEST_DATABASE_NAME, TEST_ROOT_USER_NAME, TEST_ROOT_PASSWORD);
   }
 
@@ -40,11 +44,11 @@ public class PostgreSqlDbRule extends ExternalResource {
    * @param rootUserName rootUserName
    * @param rootPassword rootPassword
    */
-  public PostgreSqlDbRule(String databaseName, String rootUserName, String rootPassword) {
+  public PostgreSqlExtension(String databaseName, String rootUserName, String rootPassword) {
     this.databaseName = databaseName;
     this.rootUserName = rootUserName;
     this.rootPassword = rootPassword;
-    this.db = new GenericContainer<>("postgres:12.1")
+    this.dbContainer = new GenericContainer<>("postgres:12.1")
         .withExposedPorts(EXPOSED_PORT)
         .withEnv("POSTGRES_PASSWORD", rootPassword)
         .withEnv("POSTGRES_USER", rootUserName)
@@ -53,14 +57,41 @@ public class PostgreSqlDbRule extends ExternalResource {
   }
 
   @Override
-  public void before() {
-    log.info("Starting the PostgreSql server");
-    db.start();
-    log.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
+  public void beforeEach(ExtensionContext extensionContext) {
+    startDbContainer();
+    reconfiguringJdbi();
+    startMigration();
+  }
+  
+  @Override
+  public void beforeAll(ExtensionContext extensionContext) {
+    startDbContainer();
+    reconfiguringJdbi();
+    startMigration();
+  }
 
+  @Override
+  public void afterEach(ExtensionContext extensionContext) {
+    stopDbContainer();
+  }
+  
+  @Override
+  public void afterAll(ExtensionContext extensionContext) {
+    stopDbContainer();
+  }
+  
+  private void startDbContainer() {
+    log.info("Starting the PostgreSql server");
+    dbContainer.start();
+    log.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
+  }
+
+  private void reconfiguringJdbi() {
     log.info("Reconfiguring Jdbi");
     Dbi.instance().reconfigureJdbi(getUrl(), rootUserName, rootPassword);
-    
+  }
+
+  private void startMigration() {
     log.info("Starting migration");
     FluentConfiguration fluentConfiguration = Flyway.configure()
         .locations(scriptLocation)
@@ -70,19 +101,18 @@ public class PostgreSqlDbRule extends ExternalResource {
     flyway.migrate();
   }
 
-  @Override
-  public void after() {
+  private void stopDbContainer() {
     log.info("Stopping PostgreSql server");
-    db.stop();
+    dbContainer.stop();
     log.info("PostgreSql server stopped");
   }
 
   public String getHost() {
-    return db.getContainerIpAddress();
+    return dbContainer.getContainerIpAddress();
   }
 
   public int getPort() {
-    return db.getMappedPort(EXPOSED_PORT);
+    return dbContainer.getMappedPort(EXPOSED_PORT);
   }
 
   /**

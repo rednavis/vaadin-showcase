@@ -1,6 +1,7 @@
 package com.rednavis.vaadin.showcase.backend.config;
 
 import com.google.common.reflect.ClassPath;
+import com.rednavis.vaadin.showcase.exception.InitConfigError;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class ConfigManager {
 
       _configMap = Collections.unmodifiableMap(map);
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new InitConfigError("Cannot init config");
     }
 
   }
