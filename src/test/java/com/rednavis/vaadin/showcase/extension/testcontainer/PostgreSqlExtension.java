@@ -26,7 +26,7 @@ public class PostgreSqlExtension implements BeforeEachCallback, BeforeAllCallbac
   private static final String TEST_DATABASE_NAME = "test";
   private static final String TEST_ROOT_USER_NAME = "root";
   private static final String TEST_ROOT_PASSWORD = "root";
-  private static final String scriptLocation = "classpath:db/migration";
+  private static final String SCRIPT_LOCATION = "classpath:db/migration";
 
   private final GenericContainer<?> dbContainer;
   private final String databaseName;
@@ -94,7 +94,7 @@ public class PostgreSqlExtension implements BeforeEachCallback, BeforeAllCallbac
   private void startMigration() {
     log.info("Starting migration");
     FluentConfiguration fluentConfiguration = Flyway.configure()
-        .locations(scriptLocation)
+        .locations(SCRIPT_LOCATION)
         .dataSource(getUrl(), rootUserName, rootPassword);
     Flyway flyway = new Flyway(fluentConfiguration);
     flyway.clean();

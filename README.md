@@ -26,6 +26,8 @@ For Intellij IDEA:
 `mvn install`
 
 # How to launch locally
+Type `docker-compose up` from project docker module.
+Type `mvn flyway:migrate` from project root.
 Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
 
 # Unit testing 
