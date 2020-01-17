@@ -96,10 +96,13 @@
             <format>xml</format>
           </formats>
           <instrumentation>
+            <ignoreTrivial>true</ignoreTrivial>
             <excludes>
               <exclude>com/rednavis/vaadin/showcase/views/**/*.class</exclude>
             </excludes>
-            <ignoreTrivial>true</ignoreTrivial>
+            <ignoreMethodAnnotations>
+              <ignoreMethodAnnotation>lombok.Generated</ignoreMethodAnnotation>
+            </ignoreMethodAnnotations>
           </instrumentation>
           <quiet>true</quiet>
         </configuration>
