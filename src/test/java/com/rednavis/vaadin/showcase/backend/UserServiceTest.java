@@ -8,15 +8,14 @@ import com.rednavis.vaadin.showcase.backend.enums.UserRole;
 import com.rednavis.vaadin.showcase.backend.service.user.UserRepositoryImpl;
 import com.rednavis.vaadin.showcase.backend.service.user.UserService;
 import com.rednavis.vaadin.showcase.backend.service.user.UserServiceImpl;
+import com.rednavis.vaadin.showcase.utils.BaseIntegrationTest;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
-public class UserServiceTest {
+public class UserServiceTest extends BaseIntegrationTest {
 
   private static UserService userService;
 
@@ -39,8 +38,12 @@ public class UserServiceTest {
 
     long userId = userService.createUser(userDto);
     userDto.setId(userId);
-    assertEquals(userDto, userService.getUserById(userId));
-    assertEquals(userDto, userService.getUserByEmail("test_email"));
+    UserDto actualUserDto = userService.getUserById(userId);
+    assertEquals(userDto, actualUserDto);
+    assertEquals(userRoles, actualUserDto.getRoleSet());
+    actualUserDto = userService.getUserByEmail("email");
+    assertEquals(userDto, actualUserDto);
+    assertEquals(userRoles, actualUserDto.getRoleSet());
 
     Set<RoleDto> updatedUserRoles = new HashSet<>(Collections.singleton(RoleDto.builder()
         .id(1L)
@@ -48,6 +51,7 @@ public class UserServiceTest {
         .build()));
     UserDto updatedUserDto = UserDto.builder()
         .id(userDto.getId())
+        .password(userDto.getPassword())
         .email("new_email")
         .roleSet(updatedUserRoles)
         .build();
