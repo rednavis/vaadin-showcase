@@ -52,8 +52,10 @@ public class PasswordServiceImpl implements PasswordService {
   @Inject
   public PasswordServiceImpl(PasswordConfig passwordConfig) {
     List<Rule> ruleList = new ArrayList<>();
-    ruleList.add(new LengthRule(passwordConfig.getMinLength(), passwordConfig.getMaxLength()));
 
+    if (passwordConfig.getMinLength() > 0 && passwordConfig.getMaxLength() > 0 && passwordConfig.getMinLength() < passwordConfig.getMaxLength()) {
+      ruleList.add(new LengthRule(passwordConfig.getMinLength(), passwordConfig.getMaxLength()));
+    }
     if (passwordConfig.getRequireLeastNumberOfDigits() > 0) {
       ruleList.add(new DigitCharacterRule(passwordConfig.getRequireLeastNumberOfDigits()));
     }
@@ -246,8 +248,8 @@ public class PasswordServiceImpl implements PasswordService {
     try {
       return createHash(password);
     } catch (Exception e) {
-      log.error("Password generatePassword  {} failed.", password, e);
-      throw new RuntimeException("Password generatePassword  " + password + " failed.", e);
+      log.error("Password generatePassword failed.", e);
+      throw new RuntimeException("Password generatePassword failed.", e);
     }
   }
 

@@ -17,13 +17,13 @@ import org.junit.jupiter.api.Test;
 class PasswordServiceTest {
 
   @WeldSetup
-  WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
+  private WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
 
   @Inject
   private PasswordService passwordService;
 
   @Test
-  void checkPasswordComplexity() {
+  public void checkPasswordComplexity() {
     List<String> errorList = passwordService.checkPasswordComplexity("wrong pass");
     assertEquals(2, errorList.size());
 
@@ -32,14 +32,14 @@ class PasswordServiceTest {
   }
 
   @Test
-  void validateRightPassword() {
+  public void validateRightPassword() {
     String encryptPassword = passwordService.generatePassword(PASSWORD);
     boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD);
     assertTrue(valid);
   }
 
   @Test
-  void validateWrongPassword() {
+  public void validateWrongPassword() {
     String encryptPassword = passwordService.generatePassword(PASSWORD);
     boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD + "123");
     assertFalse(valid);
