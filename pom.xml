@@ -154,13 +154,6 @@
       <groupId>com.vaadin</groupId>
     </dependency>
 
-    <dependency>
-      <artifactId>javaee-api</artifactId>
-      <groupId>javax</groupId>
-      <scope>provided</scope>
-      <version>7.0</version>
-    </dependency>
-
     <!-- Added to provide logging output as Flow uses -->
     <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
     <dependency>
@@ -168,53 +161,55 @@
       <groupId>org.slf4j</groupId>
     </dependency>
 
+    <!-- Java EE-->
+    <dependency>
+      <artifactId>javaee-api</artifactId>
+      <groupId>javax</groupId>
+      <scope>provided</scope>
+      <version>${javaee-api.version}</version>
+    </dependency>
+
+    <!-- Database -->
+    <dependency>
+      <artifactId>postgresql</artifactId>
+      <groupId>org.postgresql</groupId>
+      <version>${postgresql.version}</version>
+    </dependency>
+
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.10</version>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
-    <!-- JUnit5 -->
+    <!-- Other-->
     <dependency>
-      <artifactId>junit-jupiter-engine</artifactId>
+      <artifactId>vt-password</artifactId>
+      <groupId>edu.vt.middleware</groupId>
+      <version>${vt-password.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>owner</artifactId>
+      <groupId>org.aeonbits.owner</groupId>
+      <version>${owner.version}</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <artifactId>junit-jupiter</artifactId>
       <groupId>org.junit.jupiter</groupId>
-      <scope>test</scope>
-      <version>${junit-jupiter-engine.version}</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>junit-platform-runner</artifactId>
-      <groupId>org.junit.platform</groupId>
-      <version>${junit-platform-runner.version}</version>
+      <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <version>${junit-jupiter-engine.version}</version>
+      <artifactId>weld-junit5</artifactId>
+      <groupId>org.jboss.weld</groupId>
+      <version>${weld-junit5.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
-      <version>${mockito-junit-jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers</artifactId>
-      <version>1.12.4</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- PostgreSql -->
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>42.2.9</version>
     </dependency>
   </dependencies>
 
@@ -368,7 +363,8 @@
 
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
-    <!--    Plugins-->
+    <!-- Plugins-->
+
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -377,13 +373,19 @@
     <tomee-maven-plugin.version>8.0.0</tomee-maven-plugin.version>
     <vaadin.version>14.1.5</vaadin.version>
 
-    <!--    Reporting-->
+    <!-- Reporting-->
     <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
 
-    <!--    Dependencies -->
-    <junit-jupiter-engine.version>5.5.2</junit-jupiter-engine.version>
-    <junit-platform-runner.version>1.5.2</junit-platform-runner.version>
-    <mockito-junit-jupiter.version>3.2.4</mockito-junit-jupiter.version>
+    <!-- Dependencies -->
+    <javaee-api.version>8.0.1</javaee-api.version>
+    <junit-jupiter.version>5.5.2</junit-jupiter.version>
+    <lombok.version>1.18.10</lombok.version>
+    <owner.version>1.0.10</owner.version>
+    <postgresql.version>42.2.9</postgresql.version>
+
+    <!-- Test-->
+    <vt-password.version>3.1.2</vt-password.version>
+    <weld-junit5.version>2.0.1.Final</weld-junit5.version>
   </properties>
 
   <reporting>

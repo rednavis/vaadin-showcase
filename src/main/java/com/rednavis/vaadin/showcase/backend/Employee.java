@@ -2,12 +2,14 @@ package com.rednavis.vaadin.showcase.backend;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
- *  Model.
+ * Model.
  */
 @Getter
 @Setter
+@ToString
 public class Employee {
 
   private String firstname;
@@ -29,10 +31,5 @@ public class Employee {
     this.lastname = lastname;
     this.email = email;
     this.title = title;
-  }
-
-  @Override
-  public String toString() {
-    return firstname + " " + lastname + "(" + email + ")";
   }
 }
