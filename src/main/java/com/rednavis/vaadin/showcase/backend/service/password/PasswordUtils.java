@@ -43,13 +43,11 @@ class PasswordUtils {
     return parts;
   }
 
-  public static boolean verifyPassword(String password, String correctHash)
-      throws CannotPerformOperationException, InvalidHashException {
+  public static boolean verifyPassword(String password, String correctHash) throws CannotPerformOperationException, InvalidHashException {
     return verifyPassword(password.toCharArray(), correctHash);
   }
 
-  public static boolean verifyPassword(char[] password, String correctHash)
-      throws CannotPerformOperationException, InvalidHashException {
+  public static boolean verifyPassword(char[] password, String correctHash) throws CannotPerformOperationException, InvalidHashException {
     // Decode the hash into its parameters
     String[] params = correctHash.split(":");
     if (params.length != HASH_SECTIONS) {
@@ -65,13 +63,11 @@ class PasswordUtils {
     try {
       iterations = Integer.parseInt(params[ITERATION_INDEX]);
     } catch (NumberFormatException ex) {
-      throw new InvalidHashException("Could not parse the iteration count as an integer.", ex
-      );
+      throw new InvalidHashException("Could not parse the iteration count as an integer.", ex);
     }
 
     if (iterations < 1) {
-      throw new InvalidHashException("Invalid number of iterations. Must be >= 1."
-      );
+      throw new InvalidHashException("Invalid number of iterations. Must be >= 1.");
     }
 
     byte[] salt = null;
@@ -115,8 +111,7 @@ class PasswordUtils {
     return diff == 0;
   }
 
-  private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes)
-      throws CannotPerformOperationException {
+  private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes) throws CannotPerformOperationException {
     try {
       PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
       SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
@@ -129,8 +124,7 @@ class PasswordUtils {
     }
   }
 
-  private static byte[] fromBase64(String hex)
-      throws IllegalArgumentException {
+  private static byte[] fromBase64(String hex) throws IllegalArgumentException {
     return Base64.getDecoder().decode(hex);
   }
 

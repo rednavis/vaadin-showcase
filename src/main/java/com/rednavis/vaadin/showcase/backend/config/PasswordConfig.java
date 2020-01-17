@@ -4,12 +4,14 @@ import java.util.concurrent.TimeUnit;
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.HotReload;
 import org.aeonbits.owner.Config.HotReloadType;
+import org.aeonbits.owner.Config.LoadPolicy;
+import org.aeonbits.owner.Config.LoadType;
 import org.aeonbits.owner.Config.Sources;
 
-//@GlobalConfig
-@HotReload(value = 1, unit = TimeUnit.MINUTES, type = HotReloadType.ASYNC)
-@Sources( {"classpath:ServerConfig.properties"})
 // Password validation
+@HotReload(value = 1, unit = TimeUnit.MINUTES, type = HotReloadType.ASYNC)
+@LoadPolicy(LoadType.MERGE)
+@Sources( {"classpath:ServerConfig.properties"})
 public interface PasswordConfig extends Config {
 
   @Key("userPasswordComplexity.minLength")

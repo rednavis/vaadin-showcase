@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class PasswordServiceTest {
 
   @WeldSetup
-  private WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
+  public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
 
   @Inject
   private PasswordService passwordService;

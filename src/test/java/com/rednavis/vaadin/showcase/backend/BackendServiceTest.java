@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class BackendServiceTest {
 
   @WeldSetup
-  private WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(BackendService.class));
+  public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(BackendService.class));
 
   @Inject
   private BackendService backendService;
