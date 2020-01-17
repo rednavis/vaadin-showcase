@@ -21,14 +21,8 @@ import com.vaadin.flow.theme.lumo.Lumo;
 @RouteAlias(value = "")
 @Tag("login-view")
 @JsModule("./src/views/login/login-view.js")
-//@NpmPackage(value="@polymer/iron-form", version = "3.0.1")
-//@NpmPackage(value="@polymer/paper-tabs", version = "3.1.0")
-//@NpmPackage(value="@polymer/iron-pages", version = "3.0.1")
 @Viewport(VIEW_PORT)
 public class LoginView extends PolymerTemplate<TemplateModel> {
-
-//  @Id("content")
-//  private Div content;
 
   /**
    * LoginView.

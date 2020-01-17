@@ -24,8 +24,6 @@ static get properties() {
     }
   }
 }
-
-
   static get template() {
     return html`
       <style>
@@ -37,7 +35,7 @@ static get properties() {
           width: 400px;
           margin: 0 auto;
           flex-direction: column;
-          padding-top: 300px;
+          padding-top: 200px;
           --lumo-border-radius-m: 0.25em;
           --lumo-font-size-s: .875rem;
           --lumo-secondary-text-color: hsla(214, 42%, 18%, 0.72);
@@ -194,8 +192,6 @@ static get properties() {
         color: #fff;
         font-size: 16px;
         font-weight: 700;
-        /*--lumo-contrast-60pct: #aaa;*/
-        /*--lumo-body-text-color: #fff;*/
         display: inline-block;
         max-width: 100%;
         width: auto 
@@ -231,6 +227,9 @@ static get properties() {
         font-size: 14px;
         font-weight: 700;
       }
+      .dialog-header {
+        text-align: center;
+      }
       
       </style>
       <iron-iconset-svg name="inline" size="24">
@@ -254,7 +253,7 @@ static get properties() {
       </iron-iconset-svg>
 
       <div class="dialog-header">
-      <s-svg src="img/rednavis-logo.svg" />
+      <img src="img/rednavis-logo.svg" />
       </div>
       
       <paper-tabs id="plain-tabs" class="plain-tabs" selected="{{selected}}">
@@ -262,8 +261,6 @@ static get properties() {
         <paper-tab>Sign up</paper-tab>
       </paper-tabs>
 
-
-<!--      <div class="content">-->
       <iron-pages selected="{{selected}}">
        <div>
              <iron-form class="login" id="form" allow-redirect>
@@ -281,7 +278,7 @@ static get properties() {
          <iron-icon icon="inline:twitter" id="twitter-icon" class="button-icon" role="img" aria-label="Twitter"></iron-icon>
          <span class="button--social-text">Login with Twitter</span>
       </button>
-      
+    
       <p class="text-upper text-muted or-with-lines"><span>Or</span></p>
                 <form method="post" action="login">
                     <vaadin-vertical-layout>
@@ -313,17 +310,9 @@ static get properties() {
          <iron-icon icon="inline:twitter" id="twitter-icon" class="button-icon" role="img" aria-label="Twitter"></iron-icon>
          <span class="button--social-text">Sign up with Twitter</span>
       </button>
-      
+   
       <p class="text-upper text-muted or-with-lines"><span>Or</span></p>
-<!--                <form method="post" action="signup">-->
-<!--                    <vaadin-vertical-layout>-->
-<!--                        <vaadin-text-field id="email" name="email" placeholder="Email" autofocus required></vaadin-text-field>-->
-<!--                        <vaadin-password-field id="password" name="password" placeholder="Password" required></vaadin-password-field>-->
-<!--                        <vaadin-button on-click="signup" theme="primary">-->
-<!--                            SIGN UP-->
-<!--                        </vaadin-button>-->
-<!--                    </vaadin-vertical-layout>-->
-<!--                </form>-->
+
                 <form id="provideEmailForm">
                 <vaadin-vertical-layout>
                 <vaadin-text-field autocomplete="email" id="signup-email" class="vc-input" label="Email" error-message="Invalid Email Format" required="" name="email" tabindex="0" has-label="">
@@ -340,40 +329,7 @@ static get properties() {
        </div>
       </iron-pages>
       </div>
-      
-<!--      <iron-form class="login" id="form" allow-redirect>-->
-
-<!--      <div id="header">Vaadin Showcase</div>-->
-<!--      <div id="content">Log In</div>-->
-
-<!--      <div class="login-form-container">-->
-<!--                  <button class="registration-dialog__social-button social-button button&#45;&#45;google">-->
-<!--         <iron-icon icon="inline:google" id="google-icon" class="button-icon" role="img" aria-label="Google"></iron-icon>-->
-<!--         <span class="button&#45;&#45;social-text">Login with Google</span>-->
-<!--      </button>-->
-<!--      <button class="registration-dialog__social-button social-button button&#45;&#45;facebook">-->
-<!--         <iron-icon icon="inline:facebook" id="facebook-icon" class="button-icon" role="img" aria-label="Facebook"></iron-icon>-->
-<!--         <span class="button&#45;&#45;social-text">Login with Facebook</span>-->
-<!--      </button>-->
-<!--      <button class="registration-dialog__social-button social-button button&#45;&#45;twitter">-->
-<!--         <iron-icon icon="inline:twitter" id="twitter-icon" class="button-icon" role="img" aria-label="Twitter"></iron-icon>-->
-<!--         <span class="button&#45;&#45;social-text">Login with Twitter</span>-->
-<!--      </button>-->
-<!--      -->
-<!--      <p class="text-upper text-muted or-with-lines"><span>Or</span></p>-->
-<!--                <form method="post" action="login">-->
-<!--                    <vaadin-vertical-layout>-->
-<!--                        <vaadin-text-field id="username" name="username" placeholder="Username" autofocus required></vaadin-text-field>-->
-<!--                        <vaadin-password-field id="password" name="password" placeholder="Password" required></vaadin-password-field>-->
-<!--                        <vaadin-button on-click="login" theme="primary">-->
-<!--                            Login-->
-<!--                        </vaadin-button>-->
-<!--                    </vaadin-vertical-layout>-->
-<!--                </form>-->
-<!--      </div>-->
-<!--                  </iron-form>-->
-
-<!-- -->    `;
+      `;
   }
 
   static get is() {
