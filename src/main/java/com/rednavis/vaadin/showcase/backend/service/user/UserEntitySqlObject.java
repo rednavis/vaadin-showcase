@@ -1,8 +1,8 @@
 package com.rednavis.vaadin.showcase.backend.service.user;
 
-import static com.rednavis.vaadin.showcase.backend.db.DbConstants.ROLE_PREFIX;
+import static com.rednavis.vaadin.showcase.backend.db.DbConstantUtils.ROLE_PREFIX;
 
-import com.rednavis.vaadin.showcase.backend.db.DbConstants;
+import com.rednavis.vaadin.showcase.backend.db.DbConstantUtils;
 import com.rednavis.vaadin.showcase.backend.entity.RoleEntity;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
 import com.rednavis.vaadin.showcase.backend.service.role.RoleRepository;
@@ -28,7 +28,7 @@ public interface UserEntitySqlObject {
 
   /**
    * Get user entity by id with nested entities. Prefixes params are used to construct correct sql query, that mapper then can map nested entities,
-   * {@link DbConstants} for values
+   * {@link DbConstantUtils} for values
    *
    * @param rolePrefix role prefix
    * @param id of user to be returned

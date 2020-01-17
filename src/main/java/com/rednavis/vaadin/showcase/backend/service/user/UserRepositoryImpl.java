@@ -1,6 +1,6 @@
 package com.rednavis.vaadin.showcase.backend.service.user;
 
-import static com.rednavis.vaadin.showcase.backend.db.DbConstants.ROLE_PREFIX;
+import static com.rednavis.vaadin.showcase.backend.db.DbConstantUtils.ROLE_PREFIX;
 
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
