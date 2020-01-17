@@ -15,4 +15,4 @@ Please follow instructions from README.MD and prepare your laptop in order to ha
 7. Make sure that you passed all checks including CI build and various quality checks introduced by open source cloud software integrated with that repo. You would also need at least one approval from core team members.
 
 # Have a question?
-Please join [Telegram channel](https://t.me/vaadin_showcase) in order to reach development team and ask your question.
+Please join [Telegram group](https://t.me/vaadin_showcase_group) in order to reach development team and ask your question.
