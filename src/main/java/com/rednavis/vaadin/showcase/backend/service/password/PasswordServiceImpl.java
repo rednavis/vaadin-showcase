@@ -124,22 +124,12 @@ public class PasswordServiceImpl implements PasswordService {
   }
 
   @Override
-  public String generatePassword(String password) {
-    try {
-      return PasswordUtils.createHash(password);
-    } catch (CannotPerformOperationException e) {
-      log.error("Password generatePassword failed.", e);
-      throw new RuntimeException("Password generatePassword failed.", e);
-    }
+  public String generatePassword(String password) throws CannotPerformOperationException {
+    return PasswordUtils.createHash(password);
   }
 
   @Override
-  public boolean validatePassword(String passwordDb, String password) {
-    try {
-      return PasswordUtils.verifyPassword(password, passwordDb);
-    } catch (Exception e) {
-      log.error("Password validation failed.", e);
-      return false;
-    }
+  public boolean validatePassword(String passwordDb, String password) throws CannotPerformOperationException, InvalidHashException {
+    return PasswordUtils.verifyPassword(password, passwordDb);
   }
 }

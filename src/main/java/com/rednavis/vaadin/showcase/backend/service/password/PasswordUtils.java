@@ -39,8 +39,7 @@ class PasswordUtils {
     int hashSize = hash.length;
 
     // format: algorithm:iterations:hashSize:salt:hash
-    String parts = "sha1:" + PBKDF2_ITERATIONS + ":" + hashSize + ":" + toBase64(salt) + ":" + toBase64(hash);
-    return parts;
+    return "sha1:" + PBKDF2_ITERATIONS + ":" + hashSize + ":" + toBase64(salt) + ":" + toBase64(hash);
   }
 
   public static boolean verifyPassword(String password, String correctHash) throws CannotPerformOperationException, InvalidHashException {
@@ -50,6 +49,7 @@ class PasswordUtils {
   public static boolean verifyPassword(char[] password, String correctHash) throws CannotPerformOperationException, InvalidHashException {
     // Decode the hash into its parameters
     String[] params = correctHash.split(":");
+
     if (params.length != HASH_SECTIONS) {
       throw new InvalidHashException("Fields are missing from the password hash.");
     }
@@ -59,7 +59,7 @@ class PasswordUtils {
       throw new CannotPerformOperationException("Unsupported hash type.");
     }
 
-    int iterations = 0;
+    int iterations;
     try {
       iterations = Integer.parseInt(params[ITERATION_INDEX]);
     } catch (NumberFormatException ex) {
@@ -70,21 +70,21 @@ class PasswordUtils {
       throw new InvalidHashException("Invalid number of iterations. Must be >= 1.");
     }
 
-    byte[] salt = null;
+    byte[] salt;
     try {
       salt = fromBase64(params[SALT_INDEX]);
     } catch (IllegalArgumentException ex) {
       throw new InvalidHashException("Base64 decoding of salt failed.", ex);
     }
 
-    byte[] hash = null;
+    byte[] hash;
     try {
       hash = fromBase64(params[PBKDF2_INDEX]);
     } catch (IllegalArgumentException ex) {
       throw new InvalidHashException("Base64 decoding of pbkdf2 output failed.", ex);
     }
 
-    int storedHashSize = 0;
+    int storedHashSize;
     try {
       storedHashSize = Integer.parseInt(params[HASH_SIZE_INDEX]);
     } catch (NumberFormatException ex) {
@@ -98,6 +98,7 @@ class PasswordUtils {
     // Compute the hash of the provided password, using the same salt,
     // iteration count, and hash length
     byte[] testHash = pbkdf2(password, salt, iterations, hash.length);
+
     // Compare the hashes in constant time. The password is correct if
     // both hashes match.
     return slowEquals(hash, testHash);
@@ -117,14 +118,13 @@ class PasswordUtils {
       SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
       return skf.generateSecret(spec).getEncoded();
     } catch (NoSuchAlgorithmException ex) {
-      throw new CannotPerformOperationException("Hash algorithm not supported.", ex
-      );
+      throw new CannotPerformOperationException("Hash algorithm not supported.", ex);
     } catch (InvalidKeySpecException ex) {
       throw new CannotPerformOperationException("Invalid key spec.", ex);
     }
   }
 
-  private static byte[] fromBase64(String hex) throws IllegalArgumentException {
+  private static byte[] fromBase64(String hex) {
     return Base64.getDecoder().decode(hex);
   }
 

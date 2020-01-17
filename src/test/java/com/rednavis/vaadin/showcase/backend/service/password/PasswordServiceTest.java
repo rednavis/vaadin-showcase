@@ -32,14 +32,14 @@ class PasswordServiceTest {
   }
 
   @Test
-  public void validateRightPassword() {
+  public void validateRightPassword() throws Exception {
     String encryptPassword = passwordService.generatePassword(PASSWORD);
     boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD);
     assertTrue(valid);
   }
 
   @Test
-  public void validateWrongPassword() {
+  public void validateWrongPassword() throws Exception {
     String encryptPassword = passwordService.generatePassword(PASSWORD);
     boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD + "123");
     assertFalse(valid);
