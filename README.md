@@ -10,12 +10,15 @@ This application will demonstrate example of proper architecture of Vaadin appli
 - separation of concerns (server and client side of the application should be explicitly decoupled)
 - DRY
 - standard Java EE features like JSR-330 (Dependency Injection)
-- ...
+and many others.
 
 # Prerequisites
-- Intellij IDEA 2019.3 (other IDE should be OK but where not tested)
+- Intellij IDEA or Eclipse EE
 - Oracle JDK 1.8.X
 - Maven 3.6.3
+
+# How to contribute
+Please go through [Contribution Guide](http://bit.ly/2sx6BKz)
 
 # Setting up IDE
 For Intellij IDEA:
@@ -31,8 +34,7 @@ Type `mvn flyway:migrate` from project root.
 Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
 
 # Unit testing 
-We need to keep coverage of all logic by Unit tests between above 80%.
-We don't need to add Unit tests for Vaadin UI classes, such as Views and others.
+We need to keep coverage of all logic by Unit tests between above 80%. We don't need to add Unit tests for Vaadin UI classes, such as Views and others.
 
 # Integration testing 
 By example of `BaseIntegrationTest.class`, you can see how we can use `testcontainers` and `docker` for integration testing.
