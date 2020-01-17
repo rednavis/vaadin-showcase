@@ -49,41 +49,22 @@ class PasswordUtils {
   public static boolean verifyPassword(char[] password, String correctHash) throws CannotPerformOperationException, InvalidHashException {
     // Decode the hash into its parameters
     String[] params = correctHash.split(":");
+    checkCommon(params);
+    int iterations = checkIterations(params);
+    byte[] salt = checkSalt(params);
+    byte[] hash = checkHash(params);
+    checkStoredHashSize(params, hash);
 
-    if (params.length != HASH_SECTIONS) {
-      throw new InvalidHashException("Fields are missing from the password hash.");
-    }
+    // Compute the hash of the provided password, using the same salt,
+    // iteration count, and hash length
+    byte[] testHash = pbkdf2(password, salt, iterations, hash.length);
 
-    // Currently, Java only supports SHA1.
-    if (!params[HASH_ALGORITHM_INDEX].equals("sha1")) {
-      throw new CannotPerformOperationException("Unsupported hash type.");
-    }
+    // Compare the hashes in constant time. The password is correct if
+    // both hashes match.
+    return slowEquals(hash, testHash);
+  }
 
-    int iterations;
-    try {
-      iterations = Integer.parseInt(params[ITERATION_INDEX]);
-    } catch (NumberFormatException ex) {
-      throw new InvalidHashException("Could not parse the iteration count as an integer.", ex);
-    }
-
-    if (iterations < 1) {
-      throw new InvalidHashException("Invalid number of iterations. Must be >= 1.");
-    }
-
-    byte[] salt;
-    try {
-      salt = fromBase64(params[SALT_INDEX]);
-    } catch (IllegalArgumentException ex) {
-      throw new InvalidHashException("Base64 decoding of salt failed.", ex);
-    }
-
-    byte[] hash;
-    try {
-      hash = fromBase64(params[PBKDF2_INDEX]);
-    } catch (IllegalArgumentException ex) {
-      throw new InvalidHashException("Base64 decoding of pbkdf2 output failed.", ex);
-    }
-
+  private static void checkStoredHashSize(String[] params, byte[] hash) throws InvalidHashException {
     int storedHashSize;
     try {
       storedHashSize = Integer.parseInt(params[HASH_SIZE_INDEX]);
@@ -94,14 +75,51 @@ class PasswordUtils {
     if (storedHashSize != hash.length) {
       throw new InvalidHashException("Hash length doesn't match stored hash length.");
     }
+  }
 
-    // Compute the hash of the provided password, using the same salt,
-    // iteration count, and hash length
-    byte[] testHash = pbkdf2(password, salt, iterations, hash.length);
+  private static byte[] checkHash(String[] params) throws InvalidHashException {
+    byte[] hash;
+    try {
+      hash = fromBase64(params[PBKDF2_INDEX]);
+    } catch (IllegalArgumentException ex) {
+      throw new InvalidHashException("Base64 decoding of pbkdf2 output failed.", ex);
+    }
+    return hash;
+  }
 
-    // Compare the hashes in constant time. The password is correct if
-    // both hashes match.
-    return slowEquals(hash, testHash);
+  private static byte[] checkSalt(String[] params) throws InvalidHashException {
+    byte[] salt;
+    try {
+      salt = fromBase64(params[SALT_INDEX]);
+    } catch (IllegalArgumentException ex) {
+      throw new InvalidHashException("Base64 decoding of salt failed.", ex);
+    }
+    return salt;
+  }
+
+  private static int checkIterations(String[] params) throws InvalidHashException {
+    int iterations;
+    try {
+      iterations = Integer.parseInt(params[ITERATION_INDEX]);
+    } catch (NumberFormatException ex) {
+      throw new InvalidHashException("Could not parse the iteration count as an integer.", ex);
+    }
+
+    if (iterations < 1) {
+      throw new InvalidHashException("Invalid number of iterations. Must be >= 1.");
+    }
+    return iterations;
+  }
+
+  private static void checkCommon(String[] params) throws InvalidHashException, CannotPerformOperationException {
+    if (params.length != HASH_SECTIONS) {
+      throw new InvalidHashException("Fields are missing from the password hash.");
+    }
+
+    // Currently, Java only supports SHA1.
+    if (!params[HASH_ALGORITHM_INDEX].equals("sha1")) {
+      throw new CannotPerformOperationException("Unsupported hash type.");
+    }
   }
 
   private static boolean slowEquals(byte[] a, byte[] b) {
