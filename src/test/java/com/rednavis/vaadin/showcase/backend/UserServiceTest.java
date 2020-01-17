@@ -8,22 +8,17 @@ import com.rednavis.vaadin.showcase.backend.enums.UserRole;
 import com.rednavis.vaadin.showcase.backend.service.user.UserRepositoryImpl;
 import com.rednavis.vaadin.showcase.backend.service.user.UserService;
 import com.rednavis.vaadin.showcase.backend.service.user.UserServiceImpl;
-import com.rednavis.vaadin.showcase.extension.testcontainer.PostgreSqlExtension;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
 @Disabled
 public class UserServiceTest {
 
   private static UserService userService;
-
-  @RegisterExtension
-  public static PostgreSqlExtension dbExtension = new PostgreSqlExtension();
 
   @BeforeAll
   public static void init() {
