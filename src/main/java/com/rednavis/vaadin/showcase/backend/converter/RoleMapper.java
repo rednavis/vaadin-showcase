@@ -14,11 +14,11 @@ public interface RoleMapper {
 
   RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
 
-  RoleDto roleEntityToRoleDto(RoleEntity roleEntity);
+  RoleDto entityToDto(RoleEntity roleEntity);
 
-  RoleEntity roleDtoToRoleEntity(RoleDto roleDto);
+  RoleEntity dtoToEntity(RoleDto roleDto);
 
-  Set<RoleDto> setRoleEntityToListRoleDto(Set<RoleEntity> roleEntityList);
+  Set<RoleDto> entitySetToDtoSet(Set<RoleEntity> roleEntitySet);
 
-  Set<RoleEntity> setRoleDtoToListRoleEntity(Set<RoleDto> roleDtoList);
+  Set<RoleEntity> dtoSetToEntitySet(Set<RoleDto> roleDtoSet);
 }

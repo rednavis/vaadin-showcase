@@ -3,6 +3,7 @@ package com.rednavis.vaadin.showcase.backend.service.role;
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.entity.RoleEntity;
 import java.util.Set;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.jdbi.v3.core.Jdbi;
 
@@ -12,7 +13,12 @@ import org.jdbi.v3.core.Jdbi;
 @Singleton
 public class RoleRepositoryImpl implements RoleRepository {
   
-  private final Jdbi jdbi = Dbi.instance().getJdbi();
+  private Jdbi jdbi;
+
+  @Inject
+  public RoleRepositoryImpl(Dbi dbi) {
+    jdbi = dbi.getJdbi();
+  }
 
   @Override
   public void insertUserRoles(long userId, Set<RoleEntity> roleSet) {

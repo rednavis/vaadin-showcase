@@ -1,5 +1,8 @@
 package com.rednavis.vaadin.showcase.backend.db;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class DbConstantUtils {
 
   // general constants

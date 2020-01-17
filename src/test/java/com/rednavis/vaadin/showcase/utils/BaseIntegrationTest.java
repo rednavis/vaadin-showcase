@@ -1,5 +1,6 @@
 package com.rednavis.vaadin.showcase.utils;
 
+import com.rednavis.vaadin.showcase.backend.config.ConfigProvider;
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
@@ -25,9 +26,12 @@ public abstract class BaseIntegrationTest {
       .withEnv("POSTGRES_USER", TEST_ROOT_USER_NAME)
       .withEnv("POSTGRES_PASSWORD", TEST_ROOT_PASSWORD)
       .waitingFor(new HostPortWaitStrategy());
-
+  
+  private static Dbi dbi;
+  
   static {
     startDbContainer();
+    dbi = new Dbi(new ConfigProvider().producePostgreSqlConfig());
     reconfiguringJdbi();
   }
 
@@ -44,7 +48,7 @@ public abstract class BaseIntegrationTest {
 
   private static void reconfiguringJdbi() {
     log.info("Reconfiguring Jdbi");
-    Dbi.instance().reconfigureJdbi(getUrl(), TEST_ROOT_USER_NAME, TEST_ROOT_PASSWORD);
+    dbi.reconfigureJdbi(getUrl(), TEST_ROOT_USER_NAME, TEST_ROOT_PASSWORD);
   }
 
   private static void cleanDataBase() {

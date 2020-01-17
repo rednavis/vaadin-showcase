@@ -2,6 +2,8 @@ package com.rednavis.vaadin.showcase.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.rednavis.vaadin.showcase.backend.config.ConfigProvider;
+import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.dto.RoleDto;
 import com.rednavis.vaadin.showcase.backend.service.role.RoleRepositoryImpl;
 import com.rednavis.vaadin.showcase.backend.service.role.RoleService;
@@ -20,7 +22,7 @@ public class RoleServiceTest extends BaseIntegrationTest {
   
   @BeforeAll
   public static void init() {
-    roleService = new RoleServiceImpl(new RoleRepositoryImpl());
+    roleService = new RoleServiceImpl(new RoleRepositoryImpl(new Dbi(new ConfigProvider().producePostgreSqlConfig())));
   }
   
   @Test

@@ -23,6 +23,6 @@ public class RoleServiceImpl implements RoleService {
   @Override
   public Set<RoleDto> getUserRoles(long userId) {
     Set<RoleEntity> roleEntitySet = roleRepository.getUserRoles(userId);
-    return RoleMapper.INSTANCE.setRoleEntityToListRoleDto(roleEntitySet);
+    return RoleMapper.INSTANCE.entitySetToDtoSet(roleEntitySet);
   }
 }

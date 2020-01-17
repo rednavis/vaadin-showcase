@@ -1,7 +1,7 @@
 create table roles
 (
   id serial not null,
-  role varchar(20) not null default '',
+  role varchar(20) not null unique default '',
   primary key (id)
 );
 
@@ -16,7 +16,7 @@ create table users
 create table user_role
 (
   user_id int not null,
-  role_id smallint  not null,
+  role_id smallint not null,
   foreign key (user_id) references users (id),
   foreign key (role_id) references roles (id)
 );
