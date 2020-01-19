@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.com/rednavis/vaadin-showcase.svg?branch=master)](https://travis-ci.com/rednavis/vaadin-showcase)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21e248caf9cf4192ae618eada63469c6)](https://www.codacy.com/gh/rednavis/vaadin-showcase?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rednavis/vaadin-showcase&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eb18be5f089efbefe1c5/maintainability)](https://codeclimate.com/github/rednavis/vaadin-showcase/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/eb18be5f089efbefe1c5/test_coverage)](https://codeclimate.com/github/rednavis/vaadin-showcase/test_coverage)
 [![codecov](https://codecov.io/gh/rednavis/vaadin-showcase/branch/master/graph/badge.svg)](https://codecov.io/gh/rednavis/vaadin-showcase)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
