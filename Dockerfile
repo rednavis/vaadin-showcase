@@ -1,7 +1,8 @@
 FROM maven:3.6.3-jdk-8-slim as build
 WORKDIR /usr/local/app
 COPY pom.xml .
-RUN mvn dependency:go-offline -Dsilent=true && mvn com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion="v12.13.0"
+RUN mvn -T 2C dependency:go-offline -Dsilent=true && \
+    mvn com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion="v12.13.0"
 COPY . .
 RUN mvn -T 2C -e -B package -DskipTests -Pproduction
 
