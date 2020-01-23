@@ -39,6 +39,7 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
 
   //todo: move to AuthenticationProvider class and implement
   private boolean isLoggedIn() {
-    return true;
+
+    return false;
   }
 }
