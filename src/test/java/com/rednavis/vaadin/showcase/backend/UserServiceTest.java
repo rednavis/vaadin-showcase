@@ -27,7 +27,7 @@ public class UserServiceTest extends BaseIntegrationTest {
   }
 
   @Test
-  public void shouldUserServiceMethods() {
+  public void shouldTestUserServiceMethods() {
     Set<RoleDto> userRoles = new HashSet<>(Collections.singleton(RoleDto.builder()
         .id(2L)
         .role(UserRole.USER)

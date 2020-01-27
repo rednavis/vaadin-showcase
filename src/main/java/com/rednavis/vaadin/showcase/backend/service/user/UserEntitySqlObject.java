@@ -70,7 +70,7 @@ public interface UserEntitySqlObject {
     long userId = userEntity.getId();
     roleRepository().deleteUserRoles(userId);
 
-    if (userEntity.getRoleSet() != null && userEntity.getRoleSet().size() > 0) {
+    if (userEntity.getRoleSet() != null && !userEntity.getRoleSet().isEmpty()) {
       roleRepository().insertUserRoles(userId, userEntity.getRoleSet());
     }
 
@@ -95,7 +95,7 @@ public interface UserEntitySqlObject {
   default long insertFullUser(UserEntity user) {
     long id = insertUser(user);
 
-    if (user.getRoleSet() != null && user.getRoleSet().size() > 0) {
+    if (user.getRoleSet() != null && !user.getRoleSet().isEmpty()) {
       roleRepository().insertUserRoles(id, user.getRoleSet());
     }
 
