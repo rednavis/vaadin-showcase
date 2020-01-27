@@ -1,5 +1,7 @@
 package com.rednavis.vaadin.showcase.backend.auth.jwt;
 
+import com.rednavis.vaadin.showcase.backend.auth.exception.AuthenticationException;
+import com.rednavis.vaadin.showcase.backend.auth.user.MockUserDetailsService;
 import java.io.IOException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -27,6 +29,10 @@ public class JwtAuthFilter implements Filter {
 
   @Inject
   private JwtService jwtService;
+  @Inject
+  private MockUserDetailsService userService;
+  @Inject
+  private SecurityContext securityContext;
   private String jwtToken;
 
   @Override
@@ -44,20 +50,31 @@ public class JwtAuthFilter implements Filter {
 
     // Get the Authorization header from the request
     String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+    Principal principal = null;
     // Validate the Authorization header
     if (isTokenBasedAuthentication(authorizationHeader)) {
       // Extract the token from the Authorization header
       jwtToken = authorizationHeader
           .substring(AUTHENTICATION_SCHEME.length()).trim();
-    }
-
-    Principal principal = jwtService.parseToken(jwtToken);
-
-    boolean loggedIn = principal != null && principal.getUserName() != null;
-
-    boolean loginRequest = request.getRequestURI().equals(loginURI);
-
-    if (loggedIn || loginRequest) {
+      principal = jwtService.parseToken(jwtToken);
+    } else
+      if (request.getRequestURI().equals(loginURI) &&
+      request.getParameter("username") != null && request.getParameter("password") != null) {
+        try {
+          jwtToken = userService.authenticate(request.getParameter("username"), request.getParameter("password"));
+          response.setHeader(HttpHeaders.AUTHORIZATION, AUTHENTICATION_SCHEME + " " + jwtToken);
+          //todo: add function for getting principal with token after authentication
+          principal = jwtService.parseToken(jwtToken);
+        } catch (AuthenticationException ex) {
+          response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+          response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
+          return;
+        }
+      }
+    if (principal != null && principal.getUserName() != null) {
+      securityContext.setUserName(principal.getUserName());
+      securityContext.setRoles(principal.getRoles());
       filterChain.doFilter(request, response);
     } else {
       response.sendRedirect(loginURI);
