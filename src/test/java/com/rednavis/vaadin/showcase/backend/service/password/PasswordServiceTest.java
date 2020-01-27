@@ -1,6 +1,5 @@
 package com.rednavis.vaadin.showcase.backend.service.password;
 
-import static com.rednavis.vaadin.showcase.TestUtils.PASSWORD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,9 +12,13 @@ import org.jboss.weld.junit5.WeldInitiator;
 import org.jboss.weld.junit5.WeldSetup;
 import org.junit.jupiter.api.Test;
 
+//Meta-annotation that allows test classes to be extended with {@code @EnableWeld} instead of {@code @ExtendWith(WeldJunit5Extension.class)}
 @EnableWeld
 class PasswordServiceTest {
 
+  private static final String PASSWORD = "1@QWaszx";
+
+  //An annotation used to denote a WeldInitiator field. This is then picked up by {@link WeldJunit5Extension} and used for configuration.
   @WeldSetup
   public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
 

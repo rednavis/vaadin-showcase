@@ -52,8 +52,8 @@ public class DashboardView extends Div implements AfterNavigationObserver {
     employees = new Grid<>();
     employees.addThemeVariants(GridVariant.LUMO_NO_BORDER);
     employees.setHeightFull();
-    employees.addColumn(Employee::getFirstname).setHeader("First name");
-    employees.addColumn(Employee::getLastname).setHeader("Last name");
+    employees.addColumn(Employee::getFirstName).setHeader("First name");
+    employees.addColumn(Employee::getLastName).setHeader("Last name");
     employees.addColumn(Employee::getEmail).setHeader("Email");
 
     //when a row is selected or deselected, populate form

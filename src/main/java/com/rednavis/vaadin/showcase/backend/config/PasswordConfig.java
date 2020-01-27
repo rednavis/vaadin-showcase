@@ -8,7 +8,7 @@ import org.aeonbits.owner.Config.LoadPolicy;
 import org.aeonbits.owner.Config.LoadType;
 import org.aeonbits.owner.Config.Sources;
 
-// Password validation
+// Configuration for password validation
 @HotReload(value = 1, unit = TimeUnit.MINUTES, type = HotReloadType.ASYNC)
 @LoadPolicy(LoadType.MERGE)
 @Sources( {"classpath:ServerConfig.properties"})

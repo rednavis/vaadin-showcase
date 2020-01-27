@@ -154,8 +154,6 @@
       <groupId>com.vaadin</groupId>
     </dependency>
 
-    <!-- Added to provide logging output as Flow uses -->
-    <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
     <dependency>
       <artifactId>slf4j-simple</artifactId>
       <groupId>org.slf4j</groupId>
@@ -185,16 +183,30 @@
     </dependency>
 
     <!-- Other-->
+    <!-- VT Password is a Java library for verifying that a password meets a define ruleset-->
+    <!-- https://github.com/dfish3r/vt-password-->
     <dependency>
       <artifactId>vt-password</artifactId>
       <groupId>edu.vt.middleware</groupId>
       <version>${vt-password.version}</version>
     </dependency>
 
+    <!-- The OWNER API is a Java library with the goal of minimizing the code required to handle
+    application configuration via Java properties files-->
+    <!-- https://github.com/lviggiano/owner-->
     <dependency>
       <artifactId>owner</artifactId>
       <groupId>org.aeonbits.owner</groupId>
       <version>${owner.version}</version>
+    </dependency>
+
+    <!-- Mockneat Build Status codecov is an arbitrary data-generator open-source library written in Java.-->
+    <!-- It provides a simple but powerful (fluent) API that enables developers to create json, xml, csv and sql data programatically.-->
+    <!-- https://github.com/nomemory/mockneat-->
+    <dependency>
+      <artifactId>mockneat</artifactId>
+      <groupId>net.andreinc.mockneat</groupId>
+      <version>${mockneat.version}</version>
     </dependency>
 
     <!-- Test -->
@@ -205,6 +217,9 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- The primary goal of this project is to provide simple and fast tools for CDI unit/component testing.
+    The tools are implemented as JUnit 4 and JUnit 5 extensions. Supports 3.0 (CDI 2.0)-->
+    <!-- https://github.com/weld/weld-junit-->
     <dependency>
       <artifactId>weld-junit5</artifactId>
       <groupId>org.jboss.weld</groupId>
@@ -355,32 +370,31 @@
   <properties>
     <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
     <driver-binary-downloader-maven-plugin.version>1.0.17</driver-binary-downloader-maven-plugin.version>
+    <frontend-maven-plugin.version>1.9.0</frontend-maven-plugin.version>
+    <junit-jupiter.version>5.6.0</junit-jupiter.version>
     <drivers.dir>${project.basedir}/drivers</drivers.dir>
     <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
     <failOnMissingWebXml>false</failOnMissingWebXml>
-    <frontend-maven-plugin.version>1.9.0</frontend-maven-plugin.version>
-    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
     <!-- Plugins-->
-
+    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <thorntail-maven-plugin.version>2.6.0.Final</thorntail-maven-plugin.version>
-    <tomee-maven-plugin.version>8.0.0</tomee-maven-plugin.version>
+    <mockneat.version>0.3.8</mockneat.version>
     <vaadin.version>14.1.5</vaadin.version>
 
     <!-- Reporting-->
-    <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependencies -->
     <javaee-api.version>8.0.1</javaee-api.version>
-    <junit-jupiter.version>5.5.2</junit-jupiter.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <lombok.version>1.18.10</lombok.version>
     <owner.version>1.0.10</owner.version>
+    <tomee-maven-plugin.version>8.0.1</tomee-maven-plugin.version>
     <postgresql.version>42.2.9</postgresql.version>
 
     <!-- Test-->
@@ -405,7 +419,7 @@
             </reports>
           </reportSet>
         </reportSets>
-        <version>${checkstyle.plugin.version}</version>
+        <version>${maven-checkstyle-plugin.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -425,6 +439,13 @@
         <enabled>false</enabled>
       </snapshots>
       <url>https://maven.vaadin.com/vaadin-addons</url>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://jcenter.bintray.com/</url>
     </repository>
   </repositories>
 </project>

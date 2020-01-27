@@ -11,7 +11,6 @@ public class ConfigProvider {
   @Produces
   @Singleton
   public PasswordConfig producePasswordConfig() {
-    PasswordConfig passwordConfig = ConfigFactory.create(PasswordConfig.class);
-    return passwordConfig;
+    return ConfigFactory.create(PasswordConfig.class);
   }
 }
