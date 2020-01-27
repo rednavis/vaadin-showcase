@@ -2,8 +2,6 @@ package com.rednavis.vaadin.showcase.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.rednavis.vaadin.showcase.backend.config.ConfigProvider;
-import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.dto.RoleDto;
 import com.rednavis.vaadin.showcase.backend.dto.UserDto;
 import com.rednavis.vaadin.showcase.backend.enums.UserRole;
@@ -23,7 +21,7 @@ public class UserServiceTest extends BaseIntegrationTest {
 
   @BeforeAll
   public static void init() {
-    userService = new UserServiceImpl(new UserRepositoryImpl(new Dbi(new ConfigProvider().producePostgreSqlConfig())));
+    userService = new UserServiceImpl(new UserRepositoryImpl(getDbi()));
   }
 
   @Test

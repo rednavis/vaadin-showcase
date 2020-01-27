@@ -31,7 +31,6 @@ public abstract class BaseIntegrationTest {
   
   static {
     startDbContainer();
-    dbi = new Dbi(new ConfigProvider().producePostgreSqlConfig());
     reconfiguringJdbi();
   }
 
@@ -48,6 +47,7 @@ public abstract class BaseIntegrationTest {
 
   private static void reconfiguringJdbi() {
     log.info("Reconfiguring Jdbi");
+    dbi = new Dbi(new ConfigProvider().producePostgreSqlConfig());
     dbi.reconfigureJdbi(getUrl(), TEST_ROOT_USER_NAME, TEST_ROOT_PASSWORD);
   }
 
@@ -61,6 +61,10 @@ public abstract class BaseIntegrationTest {
     flyway.migrate();
   }
 
+  protected static Dbi getDbi() {
+    return dbi;
+  }
+  
   private static String getHost() {
     return DB_CONTAINER.getContainerIpAddress();
   }
