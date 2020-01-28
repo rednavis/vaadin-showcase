@@ -2,6 +2,8 @@ package com.rednavis.vaadin.showcase.views.dashboard;
 
 import com.rednavis.vaadin.showcase.backend.BackendService;
 import com.rednavis.vaadin.showcase.backend.Employee;
+import com.rednavis.vaadin.showcase.backend.auth.annotations.Secured;
+import com.rednavis.vaadin.showcase.backend.auth.jwt.Role;
 import com.rednavis.vaadin.showcase.views.MainView;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.button.Button;
@@ -26,6 +28,7 @@ import javax.inject.Inject;
 @Route(value = "dashboard", layout = MainView.class)
 @PageTitle("Dashboard")
 @CssImport("styles/views/dashboard/dashboard-view.css")
+@Secured({Role.ADMIN, Role.USER})
 public class DashboardView extends Div implements AfterNavigationObserver {
 
   @Inject

@@ -77,7 +77,7 @@ class LoginView extends PolymerElement {
              </button>
     
              <p class="text-upper text-muted or-with-lines"><span>Or</span></p>
-             <form id="logInForm">
+             <form method="post" action="/loginView">
                <vaadin-vertical-layout>
                  <vaadin-text-field id="username" name="email" autocomplete="email" class="vc-input" label="Username" autofocus required has-label></vaadin-text-field>
                  <input type="text" part="value" slot="input" name="email" aria-labelledby="vaadin-text-field-label-3 vaadin-text-field-input-3" required="" aria-required="" autocomplete="email">
@@ -132,9 +132,22 @@ class LoginView extends PolymerElement {
     return "login-view";
   }
 
-  login() {
+  async login() {
     if (!this.$.username.invalid && !this.$.password.invalid) {
-      this.$.form.submit();
+      let user = {
+        username: this.$.username.value,
+        password: this.$.password.value
+      };
+
+      let response = await fetch('/loginView', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+      });
+
+      console.log(response);
     }
   }
 

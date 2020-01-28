@@ -1,23 +1,18 @@
 package com.rednavis.vaadin.showcase.backend.auth.jwt;
 
-import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Security context holds information about username and roles for certain request.
+ * User dto for getting authentication information.
  */
 @Data
-@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @RequestScoped
-public class SecurityContext {
-
+public class UserDetail {
   private String userName;
-  private List<Role> roles;
-
+  private String password;
 }
