@@ -390,7 +390,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependencies -->
-    <javaee-api.version>8.0.1</javaee-api.version>
+    <javaee-api.version>7.0</javaee-api.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <lombok.version>1.18.10</lombok.version>
     <owner.version>1.0.10</owner.version>

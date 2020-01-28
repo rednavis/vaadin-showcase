@@ -12,7 +12,10 @@ import org.jboss.weld.junit5.WeldInitiator;
 import org.jboss.weld.junit5.WeldSetup;
 import org.junit.jupiter.api.Test;
 
-//Meta-annotation that allows test classes to be extended with {@code @EnableWeld} instead of {@code @ExtendWith(WeldJunit5Extension.class)}
+/**
+ * Test test the serviceability of the service {@link PasswordService} Meta-annotation {@link EnableWeld} that allows test classes to be extended with
+ * {@code @EnableWeld} instead of {@code @ExtendWith(WeldJunit5Extension.class)}
+ */
 @EnableWeld
 class PasswordServiceTest {
 
