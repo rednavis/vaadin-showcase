@@ -6,15 +6,15 @@ import edu.vt.middleware.password.PasswordValidator;
 import edu.vt.middleware.password.RuleResult;
 import java.util.Collections;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@inheritDoc}
  */
 @Slf4j
-@Singleton
+@ApplicationScoped
 public class PasswordServiceImpl implements PasswordService {
 
   @Inject

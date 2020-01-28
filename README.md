@@ -45,3 +45,10 @@ https://travis-ci.com/rednavis/vaadin-showcase
 # Quality assurance
 [Codacy](https://app.codacy.com/gh/rednavis/vaadin-showcase/dashboard)
 [DeepCode](https://www.deepcode.ai/app/gh/rednavis/vaadin-showcase/e3030bc66806e770256e0435586ec621733d39c0/_/dashboard/)
+
+# Commands
+**mvn clean install -Pintegration-tests** - run integration-tests
+
+**mvn package -Pproduction** - run in production mode
+
+**mvn checkstyle:checkstyle** - run checkstyle

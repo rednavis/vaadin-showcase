@@ -3,34 +3,59 @@ package com.rednavis.vaadin.showcase.backend.service.password;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.spy;
 
-import com.rednavis.vaadin.showcase.backend.config.ConfigProvider;
+import edu.vt.middleware.password.AlphabeticalCharacterRule;
+import edu.vt.middleware.password.AlphabeticalSequenceRule;
+import edu.vt.middleware.password.DigitCharacterRule;
+import edu.vt.middleware.password.LengthRule;
+import edu.vt.middleware.password.LowercaseCharacterRule;
+import edu.vt.middleware.password.NonAlphanumericCharacterRule;
+import edu.vt.middleware.password.NumericalSequenceRule;
+import edu.vt.middleware.password.PasswordValidator;
+import edu.vt.middleware.password.QwertySequenceRule;
+import edu.vt.middleware.password.RepeatCharacterRegexRule;
+import edu.vt.middleware.password.Rule;
+import edu.vt.middleware.password.UppercaseCharacterRule;
+import edu.vt.middleware.password.WhitespaceRule;
+import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import org.jboss.weld.junit5.EnableWeld;
-import org.jboss.weld.junit5.WeldInitiator;
-import org.jboss.weld.junit5.WeldSetup;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-/**
- * Test test the serviceability of the service {@link PasswordService} Meta-annotation {@link EnableWeld} that allows test classes to be extended with
- * {@code @EnableWeld} instead of {@code @ExtendWith(WeldJunit5Extension.class)}
- */
-@EnableWeld
+@ExtendWith(MockitoExtension.class)
 class PasswordServiceTest {
 
   private static final String PASSWORD = "1@QWaszx";
 
-  //An annotation used to denote a WeldInitiator field. This is then picked up by {@link WeldJunit5Extension} and used for configuration.
-  @WeldSetup
-  public WeldInitiator weldInitiator = WeldInitiator.of(WeldInitiator.createWeld().addPackages(ConfigProvider.class, PasswordService.class));
+  private static PasswordValidator passwordValidator;
+  @InjectMocks
+  private PasswordService passwordService = new PasswordServiceImpl();
 
-  @Inject
-  private PasswordService passwordService;
+  @BeforeAll
+  public static void setup() {
+    List<Rule> ruleList = new ArrayList<>();
+    ruleList.add(new AlphabeticalCharacterRule(1));
+    ruleList.add(new QwertySequenceRule());
+    ruleList.add(new NumericalSequenceRule());
+    ruleList.add(new AlphabeticalSequenceRule());
+    ruleList.add(new WhitespaceRule());
+    ruleList.add(new RepeatCharacterRegexRule(4));
+    ruleList.add(new UppercaseCharacterRule(1));
+    ruleList.add(new LowercaseCharacterRule(1));
+    ruleList.add(new NonAlphanumericCharacterRule(1));
+    ruleList.add(new DigitCharacterRule(1));
+    ruleList.add(new LengthRule(8, 128));
+
+    passwordValidator = spy(new PasswordValidator(ruleList));
+  }
 
   @Test
   public void checkPasswordComplexity() {
-    List<String> errorList = passwordService.checkPasswordComplexity("wrong pass");
+    List<String> errorList = passwordService.checkPasswordComplexity("wrongPass");
     assertEquals(2, errorList.size());
 
     errorList = passwordService.checkPasswordComplexity(PASSWORD);

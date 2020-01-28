@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 @Route(value = "dashboard", layout = MainView.class)
 @PageTitle("Dashboard")
-@CssImport("styles/views/dashboard/dashboard-view.css")
+@CssImport("./styles/views/dashboard/dashboard-view.css")
 public class DashboardView extends Div implements AfterNavigationObserver {
 
   @Inject

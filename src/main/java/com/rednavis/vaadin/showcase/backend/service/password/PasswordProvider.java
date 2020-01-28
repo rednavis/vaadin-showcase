@@ -17,9 +17,9 @@ import edu.vt.middleware.password.WhitespaceRule;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 @ApplicationScoped
 public class PasswordProvider {
@@ -28,7 +28,7 @@ public class PasswordProvider {
   private PasswordConfig passwordConfig;
 
   @Produces
-  @Singleton
+  @Dependent
   public PasswordValidator producePasswordValidator() {
     List<Rule> ruleList = new ArrayList<>();
     checkPasswordLength(passwordConfig, ruleList);

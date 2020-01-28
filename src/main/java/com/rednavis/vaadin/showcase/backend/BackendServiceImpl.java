@@ -1,11 +1,11 @@
 package com.rednavis.vaadin.showcase.backend;
 
 import java.util.List;
-import javax.inject.Singleton;
+import javax.enterprise.context.ApplicationScoped;
 import net.andreinc.mockneat.MockNeat;
 import net.andreinc.mockneat.types.enums.NameType;
 
-@Singleton
+@ApplicationScoped
 public class BackendServiceImpl implements BackendService {
 
   private static final List<Employee> EMPLOYEES;
