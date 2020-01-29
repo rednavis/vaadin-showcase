@@ -6,7 +6,6 @@ import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.jdbi.v3.core.Jdbi;
 
 /**
  * UserRepositoryImpl.
@@ -14,19 +13,15 @@ import org.jdbi.v3.core.Jdbi;
 @Singleton
 public final class UserRepositoryImpl implements UserRepository {
 
-  private Jdbi jdbi;
-
   @Inject
-  public UserRepositoryImpl(Dbi dbi) {
-    jdbi = dbi.getJdbi();
-  }
+  private Dbi dbi;
 
   /**
    * {@inheritDoc}
    */
   @Override
   public UserEntity getUserById(long id) {
-    return jdbi.withExtension(UserEntitySqlObject.class, sql -> sql.getUserById(ROLE_PREFIX, id));
+    return dbi.getJdbi().withExtension(UserEntitySqlObject.class, sql -> sql.getUserById(ROLE_PREFIX, id));
   }
 
   /**
@@ -34,7 +29,7 @@ public final class UserRepositoryImpl implements UserRepository {
    */
   @Override
   public UserEntity getUserByEmail(String email) {
-    return jdbi.withExtension(UserEntitySqlObject.class, sql -> sql.getUserByEmail(ROLE_PREFIX, email));
+    return dbi.getJdbi().withExtension(UserEntitySqlObject.class, sql -> sql.getUserByEmail(ROLE_PREFIX, email));
   }
   
   /**
@@ -42,7 +37,7 @@ public final class UserRepositoryImpl implements UserRepository {
    */
   @Override
   public int updateUserWithoutPassword(UserEntity userEntity) {
-    return jdbi.withExtension(UserEntitySqlObject.class, sql -> sql.updateFullUserWithoutPassword(userEntity));
+    return dbi.getJdbi().withExtension(UserEntitySqlObject.class, sql -> sql.updateFullUserWithoutPassword(userEntity));
   }
 
   /**
@@ -50,7 +45,7 @@ public final class UserRepositoryImpl implements UserRepository {
    */
   @Override
   public long insertUser(UserEntity userEntity) {
-    return jdbi.withExtension(UserEntitySqlObject.class, sql -> sql.insertFullUser(userEntity));
+    return dbi.getJdbi().withExtension(UserEntitySqlObject.class, sql -> sql.insertFullUser(userEntity));
   }
 
   /**
@@ -58,6 +53,6 @@ public final class UserRepositoryImpl implements UserRepository {
    */
   @Override
   public int deleteUser(long id) {
-    return jdbi.withExtension(UserEntitySqlObject.class, sql -> sql.deleteFullUser(id));
+    return dbi.getJdbi().withExtension(UserEntitySqlObject.class, sql -> sql.deleteFullUser(id));
   }
 }

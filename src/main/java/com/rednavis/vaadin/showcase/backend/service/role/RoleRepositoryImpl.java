@@ -5,33 +5,28 @@ import com.rednavis.vaadin.showcase.backend.entity.RoleEntity;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.jdbi.v3.core.Jdbi;
 
 /**
  * RoleRepositoryImpl.
  */
 @Singleton
 public class RoleRepositoryImpl implements RoleRepository {
-  
-  private Jdbi jdbi;
 
   @Inject
-  public RoleRepositoryImpl(Dbi dbi) {
-    jdbi = dbi.getJdbi();
-  }
+  private Dbi dbi;
 
   @Override
   public void insertUserRoles(long userId, Set<RoleEntity> roleSet) {
-    jdbi.useExtension(RoleRepository.class, sql -> sql.insertUserRoles(userId, roleSet));
+    dbi.getJdbi().useExtension(RoleRepository.class, sql -> sql.insertUserRoles(userId, roleSet));
   }
   
   @Override
   public Set<RoleEntity> getUserRoles(long userId) {
-    return jdbi.withExtension(RoleRepository.class, sql -> sql.getUserRoles(userId));
+    return dbi.getJdbi().withExtension(RoleRepository.class, sql -> sql.getUserRoles(userId));
   }
 
   @Override
   public int deleteUserRoles(long userId) {
-    return jdbi.withExtension(RoleRepository.class, sql -> sql.deleteUserRoles(userId));
+    return dbi.getJdbi().withExtension(RoleRepository.class, sql -> sql.deleteUserRoles(userId));
   }
 }

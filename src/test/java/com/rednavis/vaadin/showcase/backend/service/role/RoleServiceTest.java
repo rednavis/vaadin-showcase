@@ -1,27 +1,24 @@
-package com.rednavis.vaadin.showcase.backend;
+package com.rednavis.vaadin.showcase.backend.service.role;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.rednavis.vaadin.showcase.backend.dto.RoleDto;
-import com.rednavis.vaadin.showcase.backend.service.role.RoleRepositoryImpl;
-import com.rednavis.vaadin.showcase.backend.service.role.RoleService;
-import com.rednavis.vaadin.showcase.backend.service.role.RoleServiceImpl;
 import com.rednavis.vaadin.showcase.utils.BaseIntegrationTest;
 import java.util.Set;
-import org.junit.jupiter.api.BeforeAll;
+import javax.inject.Inject;
+import org.jboss.weld.junit5.auto.AddBeanClasses;
+import org.jboss.weld.junit5.auto.EnableAutoWeld;
 import org.junit.jupiter.api.Test;
 
+@EnableAutoWeld
+@AddBeanClasses({RoleRepositoryImpl.class, RoleServiceImpl.class})
 public class RoleServiceTest extends BaseIntegrationTest {
 
   private static final long ADMIN_ID = 1L;
   private static final long USER_ID = 2L;
-  
-  private static RoleService roleService;
-  
-  @BeforeAll
-  public static void init() {
-    roleService = new RoleServiceImpl(new RoleRepositoryImpl(getDbi()));
-  }
+
+  @Inject
+  private RoleService roleService;
   
   @Test
   public void shouldTestGetUserRoles() {

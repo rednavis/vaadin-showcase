@@ -1,28 +1,25 @@
-package com.rednavis.vaadin.showcase.backend;
+package com.rednavis.vaadin.showcase.backend.service.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.rednavis.vaadin.showcase.backend.dto.RoleDto;
 import com.rednavis.vaadin.showcase.backend.dto.UserDto;
 import com.rednavis.vaadin.showcase.backend.enums.UserRole;
-import com.rednavis.vaadin.showcase.backend.service.user.UserRepositoryImpl;
-import com.rednavis.vaadin.showcase.backend.service.user.UserService;
-import com.rednavis.vaadin.showcase.backend.service.user.UserServiceImpl;
 import com.rednavis.vaadin.showcase.utils.BaseIntegrationTest;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.junit.jupiter.api.BeforeAll;
+import javax.inject.Inject;
+import org.jboss.weld.junit5.auto.AddBeanClasses;
+import org.jboss.weld.junit5.auto.EnableAutoWeld;
 import org.junit.jupiter.api.Test;
 
+@EnableAutoWeld
+@AddBeanClasses({UserRepositoryImpl.class, UserServiceImpl.class})
 public class UserServiceTest extends BaseIntegrationTest {
 
-  private static UserService userService;
-
-  @BeforeAll
-  public static void init() {
-    userService = new UserServiceImpl(new UserRepositoryImpl(getDbi()));
-  }
+  @Inject
+  private UserService userService;
 
   @Test
   public void shouldTestUserServiceMethods() {

@@ -13,15 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Singleton
 public class UserServiceImpl implements UserService {
-
-  private final UserRepository userRepository;
-  private final UserMapper userMapper;
+  
+  private UserMapper userMapper = UserMapper.INSTANCE;
 
   @Inject
-  public UserServiceImpl(UserRepository userRepository) {
-    this.userRepository = userRepository;
-    userMapper = UserMapper.INSTANCE;
-  }
+  private UserRepository userRepository;
 
   /**
    * {@inheritDoc}

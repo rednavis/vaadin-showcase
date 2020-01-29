@@ -2,10 +2,13 @@ package com.rednavis.vaadin.showcase.utils;
 
 import com.rednavis.vaadin.showcase.backend.config.ConfigProvider;
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
+import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
-import org.junit.jupiter.api.BeforeAll;
+import org.jboss.weld.junit5.auto.AddBeanClasses;
+import org.jboss.weld.junit5.auto.EnableAutoWeld;
+import org.junit.jupiter.api.BeforeEach;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
 
@@ -13,6 +16,8 @@ import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
  * BaseIntegrationTest.
  */
 @Slf4j
+@EnableAutoWeld
+@AddBeanClasses({ConfigProvider.class, Dbi.class})
 public abstract class BaseIntegrationTest {
 
   private static final int EXPOSED_PORT = 5432;
@@ -26,16 +31,17 @@ public abstract class BaseIntegrationTest {
       .withEnv("POSTGRES_USER", TEST_ROOT_USER_NAME)
       .withEnv("POSTGRES_PASSWORD", TEST_ROOT_PASSWORD)
       .waitingFor(new HostPortWaitStrategy());
-  
-  private static Dbi dbi;
+
+  @Inject
+  private Dbi dbi;
   
   static {
     startDbContainer();
-    reconfiguringJdbi();
   }
 
-  @BeforeAll
-  public static void beforeAll() {
+  @BeforeEach
+  public void beforeEach() {
+    reconfiguringJdbi();
     cleanDataBase();
   }
 
@@ -45,9 +51,8 @@ public abstract class BaseIntegrationTest {
     log.info("PostgreSql server started with host {} and port {}", getHost(), getPort());
   }
 
-  private static void reconfiguringJdbi() {
+  private void reconfiguringJdbi() {
     log.info("Reconfiguring Jdbi");
-    dbi = new Dbi(new ConfigProvider().producePostgreSqlConfig());
     dbi.reconfigureJdbi(getUrl(), TEST_ROOT_USER_NAME, TEST_ROOT_PASSWORD);
   }
 
@@ -59,10 +64,6 @@ public abstract class BaseIntegrationTest {
     Flyway flyway = new Flyway(fluentConfiguration);
     flyway.clean();
     flyway.migrate();
-  }
-
-  protected static Dbi getDbi() {
-    return dbi;
   }
   
   private static String getHost() {

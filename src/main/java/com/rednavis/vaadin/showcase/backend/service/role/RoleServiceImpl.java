@@ -13,12 +13,8 @@ import javax.inject.Singleton;
 @Singleton
 public class RoleServiceImpl implements RoleService {
   
-  private final RoleRepository roleRepository;
-
   @Inject
-  public RoleServiceImpl(RoleRepository roleRepository) {
-    this.roleRepository = roleRepository;
-  }
+  private RoleRepository roleRepository;
 
   @Override
   public Set<RoleDto> getUserRoles(long userId) {
