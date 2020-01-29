@@ -1,6 +1,7 @@
 package com.rednavis.vaadin.showcase.backend.service.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.rednavis.vaadin.showcase.backend.dto.RoleDto;
 import com.rednavis.vaadin.showcase.backend.dto.UserDto;
@@ -23,6 +24,9 @@ public class UserServiceTest extends BaseIntegrationTest {
 
   @Test
   public void shouldTestUserServiceMethods() {
+    assertThrows(IllegalArgumentException.class, () -> userService.getUserById(100L));
+    assertThrows(IllegalArgumentException.class, () -> userService.getUserByEmail("wrong"));
+    
     Set<RoleDto> userRoles = new HashSet<>(Collections.singleton(RoleDto.builder()
         .id(2L)
         .role(UserRole.USER)
