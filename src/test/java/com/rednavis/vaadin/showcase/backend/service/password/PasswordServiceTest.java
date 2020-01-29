@@ -3,76 +3,93 @@ package com.rednavis.vaadin.showcase.backend.service.password;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.spy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
-import edu.vt.middleware.password.AlphabeticalCharacterRule;
-import edu.vt.middleware.password.AlphabeticalSequenceRule;
-import edu.vt.middleware.password.DigitCharacterRule;
-import edu.vt.middleware.password.LengthRule;
-import edu.vt.middleware.password.LowercaseCharacterRule;
-import edu.vt.middleware.password.NonAlphanumericCharacterRule;
-import edu.vt.middleware.password.NumericalSequenceRule;
+import edu.vt.middleware.password.PasswordData;
 import edu.vt.middleware.password.PasswordValidator;
-import edu.vt.middleware.password.QwertySequenceRule;
-import edu.vt.middleware.password.RepeatCharacterRegexRule;
-import edu.vt.middleware.password.Rule;
-import edu.vt.middleware.password.UppercaseCharacterRule;
-import edu.vt.middleware.password.WhitespaceRule;
+import edu.vt.middleware.password.RuleResult;
+import edu.vt.middleware.password.RuleResultDetail;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class PasswordServiceTest {
 
-  private static final String PASSWORD = "1@QWaszx";
+  private static final String PASSWORD_WRONG = "wrongPass";
+  private static final String PASSWORP_GOOD = "1@QWaszx";
 
-  private static PasswordValidator passwordValidator;
   @InjectMocks
-  private PasswordService passwordService = new PasswordServiceImpl();
+  private PasswordServiceImpl passwordService;
 
-  @BeforeAll
-  public static void setup() {
-    List<Rule> ruleList = new ArrayList<>();
-    ruleList.add(new AlphabeticalCharacterRule(1));
-    ruleList.add(new QwertySequenceRule());
-    ruleList.add(new NumericalSequenceRule());
-    ruleList.add(new AlphabeticalSequenceRule());
-    ruleList.add(new WhitespaceRule());
-    ruleList.add(new RepeatCharacterRegexRule(4));
-    ruleList.add(new UppercaseCharacterRule(1));
-    ruleList.add(new LowercaseCharacterRule(1));
-    ruleList.add(new NonAlphanumericCharacterRule(1));
-    ruleList.add(new DigitCharacterRule(1));
-    ruleList.add(new LengthRule(8, 128));
+  @Mock
+  private PasswordValidator passwordValidator;
 
-    passwordValidator = spy(new PasswordValidator(ruleList));
+  private static RuleResult createWrongRuleResult() {
+    List<RuleResultDetail> errList = new ArrayList<RuleResultDetail>() {{
+      RuleResultDetail ruleResultDetail1 = new RuleResultDetail("INSUFFICIENT_CHARACTERS", new HashMap<String, Object>() {{
+        put("minimumRequired", 1);
+        put("characterType", "digit");
+        put("validCharacterCount", 0);
+        put("validCharacters", "0123456789");
+      }});
+      add(ruleResultDetail1);
+
+      RuleResultDetail ruleResultDetail2 = new RuleResultDetail("INSUFFICIENT_CHARACTERS", new HashMap<String, Object>() {{
+        put("minimumRequired", 1);
+        put("characterType", "uppercase");
+        put("validCharacterCount", 0);
+        put("validCharacters", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+      }});
+      add(ruleResultDetail2);
+    }};
+
+    RuleResult ruleResult = new RuleResult();
+    ruleResult.setValid(false);
+    ruleResult.setDetails(errList);
+    return ruleResult;
   }
 
   @Test
-  public void checkPasswordComplexity() {
-    List<String> errorList = passwordService.checkPasswordComplexity("wrongPass");
-    assertEquals(2, errorList.size());
+  public void checkWrongPasswordComplexity() {
+    when(passwordValidator.validate(any(PasswordData.class))).thenReturn(createWrongRuleResult());
 
-    errorList = passwordService.checkPasswordComplexity(PASSWORD);
+    when(passwordValidator.getMessages(any(RuleResult.class))).thenReturn(new ArrayList<String>() {{
+      add("Error 1");
+      add("Error 2");
+    }});
+
+    List<String> errorList = passwordService.checkPasswordComplexity(PASSWORD_WRONG);
+    assertEquals(2, errorList.size());
+  }
+
+  @Test
+  public void checkGoodPasswordComplexity() {
+    when(passwordValidator.validate(any(PasswordData.class))).thenReturn(new RuleResult() {{
+      setValid(true);
+    }});
+
+    List<String> errorList = passwordService.checkPasswordComplexity(PASSWORP_GOOD);
     assertEquals(0, errorList.size());
   }
 
   @Test
   public void validateRightPassword() throws Exception {
-    String encryptPassword = passwordService.generatePassword(PASSWORD);
-    boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD);
+    String encryptPassword = passwordService.generatePassword(PASSWORP_GOOD);
+    boolean valid = passwordService.validatePassword(encryptPassword, PASSWORP_GOOD);
     assertTrue(valid);
   }
 
   @Test
   public void validateWrongPassword() throws Exception {
-    String encryptPassword = passwordService.generatePassword(PASSWORD);
-    boolean valid = passwordService.validatePassword(encryptPassword, PASSWORD + "123");
+    String encryptPassword = passwordService.generatePassword(PASSWORP_GOOD);
+    boolean valid = passwordService.validatePassword(encryptPassword, PASSWORP_GOOD + PASSWORD_WRONG);
     assertFalse(valid);
   }
 }
