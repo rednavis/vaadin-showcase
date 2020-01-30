@@ -3,15 +3,15 @@ package com.rednavis.vaadin.showcase.backend.service.user;
 import com.rednavis.vaadin.showcase.backend.converter.UserMapper;
 import com.rednavis.vaadin.showcase.backend.dto.UserDto;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * UserServiceImpl.
  */
 @Slf4j
-@Singleton
+@ApplicationScoped
 public class UserServiceImpl implements UserService {
   
   private UserMapper userMapper = UserMapper.INSTANCE;

@@ -4,14 +4,14 @@ import static com.rednavis.vaadin.showcase.backend.db.DbConstantUtils.ROLE_PREFI
 
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.entity.UserEntity;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * UserRepositoryImpl.
  */
-@Singleton
-public final class UserRepositoryImpl implements UserRepository {
+@ApplicationScoped
+public class UserRepositoryImpl implements UserRepository {
 
   @Inject
   private Dbi dbi;

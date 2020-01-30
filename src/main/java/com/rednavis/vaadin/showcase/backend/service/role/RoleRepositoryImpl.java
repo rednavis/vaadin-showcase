@@ -3,13 +3,13 @@ package com.rednavis.vaadin.showcase.backend.service.role;
 import com.rednavis.vaadin.showcase.backend.db.Dbi;
 import com.rednavis.vaadin.showcase.backend.entity.RoleEntity;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * RoleRepositoryImpl.
  */
-@Singleton
+@ApplicationScoped
 public class RoleRepositoryImpl implements RoleRepository {
 
   @Inject
