@@ -17,7 +17,7 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public class UserEntity {
 
-  private long id;
+  private Long id;
   private String email;
   private String password;
   private Set<RoleEntity> roleSet;

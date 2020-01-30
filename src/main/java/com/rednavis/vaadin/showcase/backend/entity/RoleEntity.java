@@ -18,7 +18,7 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public class RoleEntity {
 
-  private long id;
+  private Long id;
   @NotNull
   private UserRole role;
 }

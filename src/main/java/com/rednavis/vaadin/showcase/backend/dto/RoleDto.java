@@ -18,7 +18,7 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public class RoleDto {
 
-  private long id;
+  private Long id;
   @NotNull
   private UserRole role;
 }

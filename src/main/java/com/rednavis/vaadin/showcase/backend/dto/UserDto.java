@@ -17,7 +17,7 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public class UserDto {
 
-  private long id;
+  private Long id;
   private String email;
   private String password;
   private Set<RoleDto> roleSet;
