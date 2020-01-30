@@ -96,10 +96,13 @@
             <format>xml</format>
           </formats>
           <instrumentation>
+            <ignoreTrivial>true</ignoreTrivial>
             <excludes>
               <exclude>com/rednavis/vaadin/showcase/views/**/*.class</exclude>
             </excludes>
-            <ignoreTrivial>true</ignoreTrivial>
+            <ignoreMethodAnnotations>
+              <ignoreMethodAnnotation>lombok.Generated</ignoreMethodAnnotation>
+            </ignoreMethodAnnotations>
           </instrumentation>
           <quiet>true</quiet>
         </configuration>
@@ -117,6 +120,17 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <groupId>org.apache.maven.plugins</groupId>
         <version>${maven-failsafe-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>6.1.3</version>
+        <configuration>
+          <url>jdbc:postgresql://localhost:5432/showcase?characterEncoding=UTF-8</url>
+          <user>root</user>
+          <password>root</password>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -239,6 +253,58 @@
       <version>${weld-junit5.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- PostgreSql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${postgresql.version}</version>
+    </dependency>
+
+    <!-- JDBI -->
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-core</artifactId>
+      <version>${jdbi3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-sqlobject</artifactId>
+      <version>${jdbi3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-stringtemplate4</artifactId>
+      <version>${jdbi3.version}</version>
+    </dependency>
+
+    <!-- Mapstruct -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>${mapstruct.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- FlyWay -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+    </dependency>
+    
   </dependencies>
 
   <dependencyManagement>
@@ -402,10 +468,19 @@
     <owner.version>1.0.10</owner.version>
     <tomee-maven-plugin.version>7.1.2</tomee-maven-plugin.version>
 
+    <!-- PostgreSql-->
+    <postgresql.version>42.2.9</postgresql.version>
+    <!-- JDBI -->
+    <jdbi3.version>3.12.0</jdbi3.version>
+    <!-- Mapstruct -->
+    <mapstruct.version>1.3.1.Final</mapstruct.version>
+    <!-- FlyWay -->
+    <flyway.version>6.1.3</flyway.version>
     <!-- Test-->
     <vaadin.version>14.1.16</vaadin.version>
     <vt-password.version>3.1.2</vt-password.version>
     <weld-junit5.version>1.3.1.Final</weld-junit5.version>
+    <testcontainers.version>1.12.4</testcontainers.version>
   </properties>
 
   <reporting>

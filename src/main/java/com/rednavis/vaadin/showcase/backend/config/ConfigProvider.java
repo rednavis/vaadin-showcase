@@ -10,6 +10,12 @@ public class ConfigProvider {
 
   @Produces
   @Dependent
+  public PostgreSqlConfig producePostgreSqlConfig() {
+    return ConfigFactory.create(PostgreSqlConfig.class);
+  }
+
+  @Produces
+  @Dependent
   public PasswordConfig producePasswordConfig() {
     return ConfigFactory.create(PasswordConfig.class);
   }

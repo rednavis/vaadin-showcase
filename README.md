@@ -31,13 +31,15 @@ For Intellij IDEA:
 `mvn install`
 
 # How to launch locally
+Type `docker-compose up` from project docker module.
+Type `mvn flyway:migrate` from project root.
 Type `mvn package tomee:run` from project root or `webapp` module and then navigate to `http://localhost:8080`.
 
 # Unit testing 
 We need to keep coverage of all logic by Unit tests between above 80%. We don't need to add Unit tests for Vaadin UI classes, such as Views and others.
 
 # Integration testing 
-By example of `PostgreSqlDbTest.class`, you can see how we can use `testcontainers` and `docker` for integration testing.
+By example of `BaseIntegrationTest.class`, you can see how we can use `testcontainers` and `docker` for integration testing.
 
 # Continuous Integration
 https://travis-ci.com/rednavis/vaadin-showcase
@@ -47,8 +49,6 @@ https://travis-ci.com/rednavis/vaadin-showcase
 [DeepCode](https://www.deepcode.ai/app/gh/rednavis/vaadin-showcase/e3030bc66806e770256e0435586ec621733d39c0/_/dashboard/)
 
 # Commands
-**mvn clean install -Pintegration-tests** - run integration-tests
-
-**mvn package -Pproduction** - run in production mode
-
-**mvn checkstyle:checkstyle** - run checkstyle
+`mvn clean install -Pintegration-tests` - run integration-tests
+`mvn package -Pproduction` - run in production mode
+`mvn checkstyle:checkstyle` - run checkstyle

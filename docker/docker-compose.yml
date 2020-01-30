@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:12.1
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: showcase
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US:en
+      LC_ALL: en_US.UTF-8

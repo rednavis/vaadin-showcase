@@ -1,0 +1,19 @@
+group UserEntitySqlObject;
+
+getUserById(role_prefix) ::= <<
+  select u.*,
+    r.id <role_prefix>_id, r.role <role_prefix>_role
+  from users u
+    left join user_role ur on u.id = ur.user_id
+    left join roles r on ur.role_id = r.id
+  where u.id = :id
+>>
+
+getUserByEmail(role_prefix) ::= <<
+  select u.*,
+    r.id <role_prefix>_id, r.role <role_prefix>_role
+  from users u
+    left join user_role ur on u.id = ur.user_id
+    left join roles r on ur.role_id = r.id
+  where u.email = :email
+>>
