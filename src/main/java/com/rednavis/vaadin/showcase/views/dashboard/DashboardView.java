@@ -1,5 +1,7 @@
 package com.rednavis.vaadin.showcase.views.dashboard;
 
+import static com.rednavis.vaadin.showcase.views.ConstantUtils.PAGE_DEFAULT_URL;
+
 import com.rednavis.vaadin.showcase.backend.BackendService;
 import com.rednavis.vaadin.showcase.backend.Employee;
 import com.rednavis.vaadin.showcase.backend.auth.annotations.Secured;
@@ -25,7 +27,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import javax.inject.Inject;
 
-@Route(value = "dashboard", layout = MainView.class)
+@Route(value = PAGE_DEFAULT_URL, layout = MainView.class)
 @PageTitle("Dashboard")
 @CssImport("styles/views/dashboard/dashboard-view.css")
 @Secured({Role.ADMIN, Role.USER})

@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @RequestScoped
 public class UserDetail {
-  private String userName;
+  private String username;
   private String password;
 }

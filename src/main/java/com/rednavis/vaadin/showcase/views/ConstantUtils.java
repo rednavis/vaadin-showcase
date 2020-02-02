@@ -13,6 +13,8 @@ public class ConstantUtils {
 
   public static final String PAGE_LOGIN_TITLE = "Login";
   public static final String PAGE_LOGIN_URL = "loginView";
+  public static final String PAGE_DEFAULT_URL = "dashboard";
+  public static final String ROOT_URL = "/";
 
   public static final String AUTHENTICATION_SCHEME = "Bearer";
 }

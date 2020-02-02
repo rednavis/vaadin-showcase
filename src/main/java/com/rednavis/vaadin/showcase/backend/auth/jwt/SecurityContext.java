@@ -14,10 +14,12 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+//@RequestScoped didn't worked for Vaadin requests. Create hash for storing this data.
 @RequestScoped
 public class SecurityContext {
 
   private String userName;
   private List<Role> roles;
+  private long jwtExpiredPeriod;
 
 }
