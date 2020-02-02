@@ -36,7 +36,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 @WebFilter(
     urlPatterns = { "/*" },
-    //use symbol ';' for splitting excluded urls
+    //Add allows access to static resources, bypassing jwt security filter
+    //Use symbol ';' for splitting excluded urls
     initParams = { @WebInitParam(name = "excludedUrls",
         value = "/VAADIN/;/robots.txt;/favicon.ico;/manifest.webmanifes;/sw.js;/offline-page.html;/icons/;/img/;/frontend/;/webjars/;/h2-console/;/frontend-es5/;/frontend-es6/") }
 )
