@@ -16,7 +16,7 @@
         </value>
       </option>
     </AndroidXmlCodeStyleSettings>
-    <JSCodeStyleSettings version="0">
+    <JSCodeStyleSettings>
       <option name="INDENT_CHAINED_CALLS" value="false" />
     </JSCodeStyleSettings>
     <JavaCodeStyleSettings>
@@ -36,7 +36,7 @@
         </value>
       </option>
     </JavaCodeStyleSettings>
-    <TypeScriptCodeStyleSettings version="0">
+    <TypeScriptCodeStyleSettings>
       <option name="INDENT_CHAINED_CALLS" value="false" />
     </TypeScriptCodeStyleSettings>
     <XML>
