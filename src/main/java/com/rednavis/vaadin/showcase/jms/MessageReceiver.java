@@ -9,11 +9,14 @@ import javax.jms.MessageListener;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MessageReceiver implements MessageListener {
 
   private Connection connection;
   private TextMessage tm;
+  private static final Logger LOGGER = LoggerFactory.getLogger(MessageReceiver.class);
 
   public void startListener() throws JMSException {
     ConnectionFactory factory = JmsProvider.getConnectionFactory();
@@ -30,11 +33,9 @@ public class MessageReceiver implements MessageListener {
     if (message instanceof TextMessage) {
       tm = (TextMessage) message;
       try {
-        System.out.printf("Message received: %s, Thread: %s%n",
-            tm.getText(),
-            Thread.currentThread().getName());
+        LOGGER.info("Message received: " + tm.getText());
       } catch (JMSException e) {
-        throw new RuntimeException(e);
+        e.printStackTrace();
       }
     }
   }

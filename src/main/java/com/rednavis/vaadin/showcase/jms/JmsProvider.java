@@ -8,7 +8,6 @@ public class JmsProvider {
   public static ConnectionFactory getConnectionFactory() {
     ConnectionFactory connectionFactory =
         new ActiveMQConnectionFactory("vm://localhost");
-
     return connectionFactory;
   }
 }

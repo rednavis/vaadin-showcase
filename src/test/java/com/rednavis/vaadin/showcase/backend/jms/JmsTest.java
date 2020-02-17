@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 class JmsTest {
 
   private MessageSender sender;
-  private MessageReceiver receiver;
 
   @Test
   public void checkSendersConnection() throws JMSException {
@@ -21,7 +20,7 @@ class JmsTest {
 
   @Test
   public void checkMassage() throws JMSException {
-    receiver = new MessageReceiver();
+    MessageReceiver receiver = new MessageReceiver();
     sender = new MessageSender();
     receiver.startListener();
     sender.sendMessage("Hi!");
