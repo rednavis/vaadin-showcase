@@ -394,7 +394,7 @@
     <mockneat.version>0.3.8</mockneat.version>
 
     <!-- Dependencies -->
-    <postgresql.version>42.2.9</postgresql.version>
+    <postgresql.version>42.2.20.jre7</postgresql.version>
     <javaee-api.version>7.0</javaee-api.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <lombok.version>1.18.10</lombok.version>
