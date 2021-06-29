@@ -399,7 +399,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <lombok.version>1.18.10</lombok.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <owner.version>1.0.10</owner.version>
+    <owner.version>1.0.12</owner.version>
     <tomee-maven-plugin.version>7.1.2</tomee-maven-plugin.version>
 
     <!-- Test-->
